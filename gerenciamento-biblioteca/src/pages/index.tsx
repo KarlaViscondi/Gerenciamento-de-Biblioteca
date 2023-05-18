@@ -13,7 +13,7 @@ export default function Home() {
           </div>
           <div className='flex flex-col mt-12'>
             <Button children={"Confirmar"} className='bg-[#00ff88] rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold text-base block' />
-            <Button children={"Cancelar"} className='bg-[#00ff88] rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold mt-12' />
+            <Button children={"Cancelar"} className='bg-[#00ff88] rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold mt-12 hover:bg-slate-700' />
           </div>
         </div>
       </div>

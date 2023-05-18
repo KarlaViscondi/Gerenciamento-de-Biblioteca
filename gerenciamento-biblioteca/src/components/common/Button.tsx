@@ -8,8 +8,7 @@ interface IButton {
 
 export default function Button({ children, className }:IButton):JSX.Element {
     return (
-        <>
-            <button className=classNames("px-6 py-3 uppercase transition-colors", className)}>{children}</button>
-        </>
+            <button className={classNames("px-6 py-3 uppercase transition-colors", className)}>{children}</button>
+
     );
 }

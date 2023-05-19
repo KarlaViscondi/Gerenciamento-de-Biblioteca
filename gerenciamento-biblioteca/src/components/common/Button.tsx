@@ -11,5 +11,6 @@ export default function Button({ children, className }:IButton):JSX.Element {
         <>
             <button className={classNames("px-6 py-3 uppercase transition-colors", className)}>{children}</button>
         </>
+
     );
 }

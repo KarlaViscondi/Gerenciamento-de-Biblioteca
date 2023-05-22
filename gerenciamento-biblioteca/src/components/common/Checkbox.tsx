@@ -16,7 +16,7 @@ export default function Checkbox({children,className,onChange,}: ICheckbox): JSX
         <label className="flex items-center space-x-2">
             <input 
                 type="checkbox"
-                className={classNames("form-checkbox h-5 w-5 text-green-500", className)}
+                className={classNames("form-checkbox h-5 w-5 text-green-500 mb-2", className)}
                 onChange={handleCheckboxChange}
             />
             {children}

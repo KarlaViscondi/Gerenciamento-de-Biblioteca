@@ -11,12 +11,6 @@ const Navbar = () => {
             </div>
             <div className="flex-none">
                 <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle">
-                        <div className="indicator">
-                        <GiWhiteBook className="h-5 w-5 text-green-500" />
-                            <span className="badge badge-sm indicator-item">8</span>
-                        </div>
-                    </label>
                     <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
                         <div className="card-body">
                             <span className="font-bold text-lg">8 livros</span>

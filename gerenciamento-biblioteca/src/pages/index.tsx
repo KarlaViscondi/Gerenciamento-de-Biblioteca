@@ -6,6 +6,7 @@ import Navbar from '../components/common/Navbar'
 import Footerbar from '../components/common/Footerbar'
 import Searchbox from '../components/common/Searchbox'
 import Modal from '../components/common/Modal'
+import BooksList from '../components/common/BooksList'
 
 export default function Home() {
   return (
@@ -15,24 +16,11 @@ export default function Home() {
       </header>
       <main className='flex-grow bg-[#201b2c] overflow-y-auto '>
         <div className='flex flex-col h-full mx-2 justify-center items-center'>
-          <div >
+          <div className='mt-20 border border-gray-300 w-2/5 p-3'>
             <Searchbox></Searchbox>
-            <div className="border border-gray-300 rounded-lg flex flex-col p-4 mt-6">
-              {/* Conteúdo dos livros */}
-              <div className='text-white'>
-                <Checkbox> </Checkbox>
-                <Checkbox> </Checkbox>
-                <Checkbox> </Checkbox>
-                <Checkbox> </Checkbox>
-                <Checkbox> </Checkbox>
-                <Checkbox> </Checkbox>
-                <Checkbox> </Checkbox>
-                <Checkbox> </Checkbox>
-                <Checkbox> </Checkbox>
-                <Checkbox> </Checkbox>
-              </div>
+            <div>
+              <BooksList></BooksList>
             </div>
-
             <div className='flex mt-12'>
               {/* Modal 1 */}
               <Modal className="modal-button">

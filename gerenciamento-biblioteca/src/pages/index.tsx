@@ -7,6 +7,7 @@ import Footerbar from '../components/common/Footerbar'
 import Searchbox from '../components/common/Searchbox'
 import Modal from '../components/common/Modal'
 import BooksList from '../components/common/BooksList'
+import { booklist } from '@/data/booklist'
 
 export default function Home() {
   return (
@@ -21,6 +22,18 @@ export default function Home() {
             <div>
               <BooksList></BooksList>
             </div>
+            <ul>
+              {
+                booklist.map((book) => (
+                <li className='flex flex-row' key={book.id}>
+                  <Checkbox/>
+                  <p>{book.title}</p>
+                  <p>{book.autor}</p>
+                  <p>{book.description}</p>
+                </li>
+                ))
+              }
+            </ul>
             <div className='flex mt-12'>
               {/* Modal 1 */}
               <Modal className="modal-button">

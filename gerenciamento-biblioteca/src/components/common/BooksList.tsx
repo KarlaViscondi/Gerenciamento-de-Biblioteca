@@ -8,8 +8,8 @@ interface IBookList extends IBook{
 
 export default function BooksList ({id, title, autor, description, className}: IBookList):JSX.Element{
     return (
-        <li className='flex flex-row text-white m-3 justify-evenly' key={id}>
-            <Checkbox> </Checkbox>
+        <li className='flex flex-row text-white m-3 space-x-10' key={id}>
+            <Checkbox className="my-4"> </Checkbox>
                 <p>{title}</p>
                 <p>{autor}</p>
                 <p>{description}</p>

@@ -17,20 +17,17 @@ export default function Home() {
       </header>
       <main className='flex-grow bg-[#201b2c] overflow-y-auto '>
         <div className='flex flex-col h-full mx-2 justify-center items-center'>
-          <div className='mt-20 border border-gray-300 w-2/5 p-3'>
+          <div className='mt-20 border border-gray-300 w-2/5 p-3 rounded-lg'>
             <Searchbox></Searchbox>
-            <div>
-              <BooksList></BooksList>
-            </div>
-            <ul>
+            <ul className='border border-gray-300 mt-6 rounded-lg'>
+              <li className='flex flex-row text-white m-3 justify-evenly '>
+                  <p>Título</p>
+                  <p>Autor</p>
+                  <p>Descrição</p>
+              </li>
               {
                 booklist.map((book) => (
-                <li className='flex flex-row' key={book.id}>
-                  <Checkbox/>
-                  <p>{book.title}</p>
-                  <p>{book.autor}</p>
-                  <p>{book.description}</p>
-                </li>
+                  <BooksList autor={book.autor} id={book.id} title={book.title} description={book.description} className='flex justify-evenly'/>
                 ))
               }
             </ul>

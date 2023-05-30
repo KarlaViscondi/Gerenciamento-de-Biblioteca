@@ -17,7 +17,7 @@ export default function Modal({children, className }:IModal):JSX.Element{
                 <div className="modal-box">{children}
                     <div className="modal-action">
                         <label htmlFor={className} className="bg-[#00ff88] rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold">Confirmar reserva</label>
-                        <label htmlFor={className} className="bg-red-500 rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold">Cancelar</label>
+                        <label htmlFor={className} className="bg-orange-500 rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold">Voltar</label>
                     </div>
                 </div>
             </div>

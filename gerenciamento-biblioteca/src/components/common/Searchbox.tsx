@@ -8,9 +8,9 @@ const SearchBox = () => {
         <input
             type="text"
             placeholder="Pesquisar"
-            className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 mt-3 w-4/5 justify-center"
+            className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#ABDEE6] mt-3 w-4/5 justify-center"
         />
-        <Button children={<ImSearch className="h-5 w-5"/>} className="px-3.5 py-1.5 bg-[#00ff88] rounded-md text-center uppercase tracking-wider font-extrabold mt-3 ml-3 "></Button>
+        <Button children={<ImSearch className="h-5 w-5"/>} className="px-3.5 py-1.5 bg-[#ABDEE6] rounded-md text-center uppercase tracking-wider font-extrabold mt-3 ml-3 "></Button>
         </div>
     );
 };

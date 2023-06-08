@@ -2,7 +2,7 @@ import { GiWhiteBook } from 'react-icons/gi';
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-[#ab526b] text-white">
             <div className="flex-1">
                 <a className="btn btn-ghost normal-case text-xl" href='/'>Catálogo</a>
                 <a className="btn btn-ghost normal-case text-xl" href='/reserva'>Reserva</a>

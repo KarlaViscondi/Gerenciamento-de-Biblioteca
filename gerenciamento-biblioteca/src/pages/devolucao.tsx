@@ -11,10 +11,10 @@ import Pagination from '../components/common/Pagination'
 export default function Home() {
     return (
         <div className="flex flex-col min-h-screen overflow-y-hidden ">
-        <header className="bg-[#201b2c]">
+        <header>
             <Navbar />
         </header>
-        <main className='flex-grow bg-[#1b132c] overflow-y-auto '>
+        <main className='flex-grow bg-[#eae6df] overflow-y-auto '>
             <div className='flex flex-col h-full mx-2 justify-center items-center'>
             <div className='mt-20 border border-gray-300 w-2/5 p-3 rounded-lg '>
                 <Searchbox></Searchbox>
@@ -29,7 +29,7 @@ export default function Home() {
                     <Checkbox> </Checkbox>
                     </div>
                 </Modal>
-                <Button className='bg-red-500 rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold mh-6 p-3 mb-6'>Cancelar</Button>
+                <Button className='bg-[#F3B0C3] rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold mh-6 p-3 mb-6'>Cancelar</Button>
                 </div>
             </div>
             </div>

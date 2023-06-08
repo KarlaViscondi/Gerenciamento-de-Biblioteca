@@ -19,7 +19,7 @@ export default function Home() {
       </header>
       <main className='bg-[#eae6df] py-10 flex-grow h-full'>
           <div className=' mx-2 border border-gray-300 max-w-2xl p-3 rounded-lg md:mx-auto'>
-            <Searchbox></Searchbox>
+            <Searchbox placeholder={'Pesquisar'}/>
             <ul className='border border-gray-300 mt-6 rounded-lg divide-y divide-gray-300 text-black'>
               <li className='flex flex-row gap-6 xm:gap-0 items-center text-black m-3 '>
                 <div className='basis-1/4 xm:basis-1/6'  >
@@ -41,6 +41,9 @@ export default function Home() {
                 <h3>Livros selecionados</h3>
                 <div className='flex flex-col mb-2'>
                   <Checkbox/> 
+                </div>
+                <div className='flex flex-col mb-2'>
+                  <Searchbox placeholder={'Pesquisar aluno  '}/> 
                 </div>
               </Modal>
             </div>

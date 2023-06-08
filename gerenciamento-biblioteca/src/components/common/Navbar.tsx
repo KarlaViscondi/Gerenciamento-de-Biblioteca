@@ -20,11 +20,11 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
-                <div className="dropdown dropdown-end">
+                <div className="dropdown dropdown-end text-black">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="avatar placeholder">
-                            <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-                                <span className="text-3xl">K</span>
+                            <div className="bg-neutral-focus  rounded-full w-10">
+                                <span className="text-3xl text-white">K</span>
                             </div>
                         </div>
                     </label>

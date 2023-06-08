@@ -13,39 +13,39 @@ import Pagination from '../components/common/Pagination'
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen overflow-y-hidden ">
-      <header className="bg-[#201b2c]">
+    <div className='w-screen h-screen flex flex-col'>
+      <header>
         <Navbar />
       </header>
-      <main className='flex-grow bg-[#201b2c] overflow-y-auto '>
-        <div className='flex flex-col h-full mx-2 justify-center items-center'>
-          <div className='mt-20 border border-gray-300 w-2/5 p-3 rounded-lg '>
+      <main className='bg-[#201b2c] py-10 flex-grow h-full'>
+          <div className=' mx-2 border border-gray-300 max-w-2xl p-3 rounded-lg md:mx-auto'>
             <Searchbox></Searchbox>
             <ul className='border border-gray-300 mt-6 rounded-lg divide-y'>
-              <li className='flex flex-row text-white m-3 space-x-12 '>
-                  <GiBookmark className='mt-1.5'></GiBookmark>
-                  <p>Título</p>
-                  <p>Autor</p>
-                  <p>Descrição</p>
+              <li className='flex flex-row gap-6 xm:gap-0 items-center text-white m-3 '>
+                <div className='basis-1/4 xm:basis-1/6'  >
+                  <GiBookmark />
+                </div>
+                <p className='basis-1/4 xm:basis-1/4'>Título</p>
+                <p className='basis-1/4 xm:basis-1/4'>Autor</p>
+                <p className='hidden xm:block xm:basis-1/3'>Descrição</p>
               </li>
               {
                 booklist.map((book) => (
-                  <BooksList key={book.id} autor={book.autor} id={book.id} title={book.title} description={book.description} className='flex justify-evenly'/>
+                  <BooksList key={book.id} autor={book.autor} id={book.id} title={book.title} description={book.description}/>
                 ))
               }
             </ul>
             <Pagination></Pagination>
-            <div className='flex mt-12'>
+            <div className='flex mt-6'>
               <Modal className="modal-button">
                 <h3>Livros selecionados</h3>
                 <div className='flex flex-col mb-2'>
-                  <Checkbox> </Checkbox>
+                  <Checkbox/> 
                 </div>
               </Modal>
-              <Button className='bg-red-500 rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold mh-6 p-3 mb-6'>Cancelar</Button>
+              <Button className='rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold p-3'>Cancelar</Button>
             </div>
           </div>
-        </div>
       </main>
       <footer>
         <Footerbar />

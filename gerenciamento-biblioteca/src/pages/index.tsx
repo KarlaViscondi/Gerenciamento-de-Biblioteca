@@ -30,7 +30,7 @@ export default function Home() {
               </li>
               {
                 booklist.map((book) => (
-                  <BooksList autor={book.autor} id={book.id} title={book.title} description={book.description} className='flex justify-evenly'/>
+                  <BooksList key={book.id} autor={book.autor} id={book.id} title={book.title} description={book.description} className='flex justify-evenly'/>
                 ))
               }
             </ul>
@@ -42,7 +42,7 @@ export default function Home() {
                   <Checkbox> </Checkbox>
                 </div>
               </Modal>
-              <Button children={"Cancelar"} className='bg-red-500 rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold mh-6 p-3 mb-6' />
+              <Button className='bg-red-500 rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold mh-6 p-3 mb-6'>Cancelar</Button>
             </div>
           </div>
         </div>

@@ -4,10 +4,10 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">Catálogo</a>
-                <a className="btn btn-ghost normal-case text-xl">Reserva</a>
-                <a className="btn btn-ghost normal-case text-xl">Empréstimo</a>
-                <a className="btn btn-ghost normal-case text-xl">Devolução</a>
+                <a className="btn btn-ghost normal-case text-xl" href='/'>Catálogo</a>
+                <a className="btn btn-ghost normal-case text-xl" href='/reserva'>Reserva</a>
+                <a className="btn btn-ghost normal-case text-xl" href='/emprestimo'>Empréstimo</a>
+                <a className="btn btn-ghost normal-case text-xl" href='/devolucao'>Devolução</a>
             </div>
             <div className="flex-none">
                 <div className="dropdown dropdown-end">

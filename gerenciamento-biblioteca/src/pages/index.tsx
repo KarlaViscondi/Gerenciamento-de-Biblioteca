@@ -17,11 +17,11 @@ export default function Home() {
       <header>
         <Navbar />
       </header>
-      <main className='bg-[#201b2c] py-10 flex-grow h-full'>
+      <main className='bg-[#eae6df] py-10 flex-grow h-full'>
           <div className=' mx-2 border border-gray-300 max-w-2xl p-3 rounded-lg md:mx-auto'>
             <Searchbox></Searchbox>
-            <ul className='border border-gray-300 mt-6 rounded-lg divide-y'>
-              <li className='flex flex-row gap-6 xm:gap-0 items-center text-white m-3 '>
+            <ul className='border border-gray-300 mt-6 rounded-lg divide-y divide-gray-300 text-black'>
+              <li className='flex flex-row gap-6 xm:gap-0 items-center text-black m-3 '>
                 <div className='basis-1/4 xm:basis-1/6'  >
                   <GiBookmark />
                 </div>
@@ -37,13 +37,12 @@ export default function Home() {
             </ul>
             <Pagination></Pagination>
             <div className='flex mt-6'>
-              <Modal className="modal-button">
+              <Modal className="modal-button" action={'Reservar'} confirm={'Confirmar reserva'}>
                 <h3>Livros selecionados</h3>
                 <div className='flex flex-col mb-2'>
                   <Checkbox/> 
                 </div>
               </Modal>
-              <Button className='rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold p-3'>Cancelar</Button>
             </div>
           </div>
       </main>

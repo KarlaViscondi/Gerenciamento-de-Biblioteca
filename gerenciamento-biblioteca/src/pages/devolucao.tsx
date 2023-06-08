@@ -14,7 +14,7 @@ export default function Home() {
         <header className="bg-[#201b2c]">
             <Navbar />
         </header>
-        <main className='flex-grow bg-[#201b2c] overflow-y-auto '>
+        <main className='flex-grow bg-[#1b132c] overflow-y-auto '>
             <div className='flex flex-col h-full mx-2 justify-center items-center'>
             <div className='mt-20 border border-gray-300 w-2/5 p-3 rounded-lg '>
                 <Searchbox></Searchbox>
@@ -29,7 +29,7 @@ export default function Home() {
                     <Checkbox> </Checkbox>
                     </div>
                 </Modal>
-                <Button children={"Cancelar"} className='bg-red-500 rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold mh-6 p-3 mb-6' />
+                <Button className='bg-red-500 rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold mh-6 p-3 mb-6'>Cancelar</Button>
                 </div>
             </div>
             </div>

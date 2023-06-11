@@ -39,9 +39,12 @@ export default function Home() {
             <Pagination/>
             <div className='flex mt-6 justify-center '>
               <Modal className="modal-button bg-[#ABDEE6]" action={'Realizar empréstimo'} confirm={'Confirmar empréstimo'}>
-                <h3>Livros selecionados</h3>
-                <div className='flex flex-col mb-2'>
-                  <Checkbox/> 
+              <h3>Livro(s) selecionado(s) para empréstimo</h3>
+                <div className='flex flex-row mb-2 mt-2 space-x-12'>
+                  <Checkbox/> <p> Código 1 </p> <p> Aluno 1 </p> <p> Título do Livro 1</p>
+                </div>
+                <div className='flex flex-row mb-2 mt-2 space-x-12'>
+                  <Checkbox/> <p> Código 2 </p> <p> Aluno 2 </p> <p> Título do Livro 2</p>
                 </div>
               </Modal>
             </div>

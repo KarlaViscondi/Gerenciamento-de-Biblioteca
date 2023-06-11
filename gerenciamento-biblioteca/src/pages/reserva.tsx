@@ -10,6 +10,7 @@ import BooksList from '../components/common/BooksList'
 import { booklist } from '@/data/booklist'
 import {GiBookmark} from 'react-icons/gi'
 import Pagination from '../components/common/Pagination'
+import { reservelist } from '@/data/reservelist'
 
 export default function Home() {
   return (
@@ -30,17 +31,17 @@ export default function Home() {
                 <p className='hidden xm:block xm:basis-1/3'>Livro</p>
               </li>
               {
-                booklist.map((book) => (
-                  <BooksList key={book.id} autor={book.autor} id={book.id} title={book.title} description={book.description}/>
+                reservelist.map((reserve) => (
+                  <BooksList key={reserve.cod} autor={reserve.name} title={reserve.cod} description={reserve.title} id={reserve.cod}/>
                 ))
               }
             </ul>
             <Pagination/>
             <div className='flex mt-6 justify-center'>
               <Modal className="modal-button bg-[#F3B0C3]" action={'Cancelar reserva'} confirm={'Confirmar'}>
-                <h3>Livros selecionados</h3>
-                <div className='flex flex-col mb-2'>
-                  <Checkbox/> 
+              <h3>Livro(s) selecionado(s) para cancelamento</h3>
+                <div className='flex flex-row mb-2 mt-2 space-x-12'>
+                  <Checkbox/> <p> Código 3 </p> <p> Aluno 3 </p> <p> Título do Livro 3</p>
                 </div>
               </Modal>
             </div>

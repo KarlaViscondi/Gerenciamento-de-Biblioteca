@@ -38,9 +38,12 @@ export default function Home() {
             <Pagination/>
             <div className='flex mt-6 justify-center'>
               <Modal className="modal-button bg-[#ABDEE6]" action={'Reservar'} confirm={'Confirmar reserva'}>
-                <h3>Livros selecionados</h3>
-                <div className='flex flex-col mb-2'>
-                  <Checkbox/> 
+                <h3>Livro(s) selecionado(s)</h3>
+                <div className='flex flex-row mb-2 mt-2 space-x-12'>
+                  <Checkbox/> <p> Livro 1 </p> <p> Autor 1 </p> <p> Descrição do Livro 1</p>
+                </div>
+                <div className='flex flex-row mb-2 mt-2 space-x-12'>
+                  <Checkbox/> <p> Livro 2 </p> <p> Autor 2 </p> <p> Descrição do Livro 2</p>
                 </div>
                 <div className='flex flex-col mb-2'>
                   <Searchbox placeholder={'Pesquisar aluno'}/> 

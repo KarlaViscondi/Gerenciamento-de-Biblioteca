@@ -19,7 +19,7 @@ export default function Home() {
       </header>
       <main className='bg-[#eae6df] py-10 flex-grow h-full'>
           <div className=' mx-2 border border-gray-300 max-w-2xl p-3 rounded-lg md:mx-auto'>
-            <Searchbox></Searchbox>
+            <Searchbox placeholder={'Pesquisar'}/>
             <ul className='border border-gray-300 mt-6 rounded-lg divide-y divide-gray-300 text-black'>
               <li className='flex flex-row gap-6 xm:gap-0 items-center text-black m-3 '>
                 <div className='basis-1/4 xm:basis-1/6'  >
@@ -35,15 +35,14 @@ export default function Home() {
                 ))
               }
             </ul>
-            <Pagination></Pagination>
-            <div className='flex mt-6'>
-              <Modal className="modal-button" action={''} confirm={''}>
+            <Pagination/>
+            <div className='flex mt-6 justify-center'>
+              <Modal className="modal-button bg-[#F3B0C3]" action={'Cancelar reserva'} confirm={'Confirmar'}>
                 <h3>Livros selecionados</h3>
                 <div className='flex flex-col mb-2'>
                   <Checkbox/> 
                 </div>
               </Modal>
-              <Button className='bg-[#F3B0C3] text-black rounded-lg	w-4/5 text-center uppercase tracking-wider font-extrabold p-3'>Cancelar Reserva</Button>
             </div>
           </div>
       </main>

@@ -35,15 +35,15 @@ export default function Home() {
                 ))
               }
             </ul>
-            <Pagination></Pagination>
-            <div className='flex mt-6'>
-              <Modal className="modal-button" action={'Reservar'} confirm={'Confirmar reserva'}>
+            <Pagination/>
+            <div className='flex mt-6 justify-center'>
+              <Modal className="modal-button bg-[#ABDEE6]" action={'Reservar'} confirm={'Confirmar reserva'}>
                 <h3>Livros selecionados</h3>
                 <div className='flex flex-col mb-2'>
                   <Checkbox/> 
                 </div>
                 <div className='flex flex-col mb-2'>
-                  <Searchbox placeholder={'Pesquisar aluno  '}/> 
+                  <Searchbox placeholder={'Pesquisar aluno'}/> 
                 </div>
               </Modal>
             </div>

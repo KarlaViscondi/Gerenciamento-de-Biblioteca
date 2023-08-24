@@ -29,11 +29,24 @@ reservation.retrieveAll = async function(req, res){
     }
 }
 
-reservation.retrieveOne = async function(req, res){
+reservation.retrieveOneName = async function(req, res){
     try{
         const result = await prisma.reservation.findUnique({
-            where: {name_student: req.params.name_student,
-            id_reservation: req.params.id_reservation} /// Pode fazer assim?? Ou tem que ser separado??
+            where: {name_student: req.params.name_student} 
+        })
+        if(result) res.send(result)
+        else res.status(404).end()
+    }
+    catch(error){
+        console.error(error)
+        res.status(500).send(error)
+    }
+}
+
+reservation.retrieveOneId = async function(req, res){
+    try{
+        const result = await prisma.reservation.findUnique({
+            where: {id_reservation: req.params.id_reservation}
         })
         if(result) res.send(result)
         else res.status(404).end()
@@ -52,6 +65,20 @@ reservation.update = async function(req, res){
         })
         if(result) res.status(204).end()
         else res.status(404).end()
+    }
+    catch(error){
+        console.error(error)
+        res.status(500).send(error)
+    }
+}
+
+reservation.delete = async function(req, res){
+    try{
+        const result = await prisma.reservation.delete({
+            where: {id_reservation: Number(req.params.id_reservation)}
+        })
+        if(result) res.status(204).end()
+        else res.status(500).send(error)
     }
     catch(error){
         console.error(error)

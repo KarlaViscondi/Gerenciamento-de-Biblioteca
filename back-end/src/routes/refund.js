@@ -5,7 +5,9 @@ const router = Router()
 
 router.post('/',refund.create)
 router.get('/',refund.retrieveAll)
-router.get('/:',refund.retrieveOne) // como referenciar id_load, name_student
+router.get('/:name',refund.retrieveOneName)
+router.get('/:id_refund',refund.retrieveOneId)
 router.put('/:id_refund', refund.update)
+router.delete('/', refund.delete)
 
 export default router

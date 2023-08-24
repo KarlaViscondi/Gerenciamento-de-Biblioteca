@@ -29,11 +29,24 @@ refund.retrieveAll = async function(req, res){
     }
 }
 
-refund.retrieveOne = async function(req, res){
+refund.retrieveOneName = async function(req, res){
     try{
         const result = await prisma.refund.findUnique({
-            where: {name_student: req.params.name_student,
-            id_refund: req.params.id_refund} /// Pode fazer assim?? Ou tem que ser separado??
+            where: {name_student: req.params.name_student} 
+        })
+        if(result) res.send(result)
+        else res.status(404).end()
+    }
+    catch(error){
+        console.error(error)
+        res.status(500).send(error)
+    }
+}
+
+refund.retrieveOneId = async function(req, res){
+    try{
+        const result = await prisma.refund.findUnique({
+            where: {id_refund: req.params.id_refund}
         })
         if(result) res.send(result)
         else res.status(404).end()
@@ -52,6 +65,20 @@ refund.update = async function(req, res){
         })
         if(result) res.status(204).end()
         else res.status(404).end()
+    }
+    catch(error){
+        console.error(error)
+        res.status(500).send(error)
+    }
+}
+
+refund.delete = async function(req, res){
+    try{
+        const result = await prisma.refund.delete({
+            where: {id_refund: Number(req.params.id_refund)}
+        })
+        if(result) res.status(204).end()
+        else res.status(500).send(error)
     }
     catch(error){
         console.error(error)

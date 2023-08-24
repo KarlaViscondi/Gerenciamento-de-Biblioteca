@@ -29,11 +29,24 @@ loan.retrieveAll = async function(req, res){
     }
 }
 
-loan.retrieveOne = async function(req, res){
+loan.retrieveOneName = async function(req, res){
     try{
         const result = await prisma.loan.findUnique({
-            where: {name_student: req.params.name_student,
-            id_loan: req.params.id_loan} /// Pode fazer assim?? Ou tem que ser separado??
+            where: {name_student: req.params.name_student} 
+        })
+        if(result) res.send(result)
+        else res.status(404).end()
+    }
+    catch(error){
+        console.error(error)
+        res.status(500).send(error)
+    }
+}
+
+loan.retrieveOneId = async function(req, res){
+    try{
+        const result = await prisma.loan.findUnique({
+            where: {id_loan: req.params.id_loan}
         })
         if(result) res.send(result)
         else res.status(404).end()
@@ -52,6 +65,20 @@ loan.update = async function(req, res){
         })
         if(result) res.status(204).end()
         else res.status(404).end()
+    }
+    catch(error){
+        console.error(error)
+        res.status(500).send(error)
+    }
+}
+
+loan.delete = async function(req, res){
+    try{
+        const result = await prisma.loan.delete({
+            where: {id_loan: Number(req.params.id_loan)}
+        })
+        if(result) res.status(204).end()
+        else res.status(500).send(error)
     }
     catch(error){
         console.error(error)

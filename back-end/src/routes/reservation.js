@@ -7,6 +7,8 @@ router.post('/',reservation.create)
 router.get('/',reservation.retrieveAll)
 router.get('/:name',reservation.retrieveOneName)
 router.get('/:id_reservation',reservation.retrieveOneId)
+router.get('/:title',reservation.retrieveOneBook)
+router.get('/:cpf',reservation.retrieveOneCPF)
 router.put('/:id_reservation', reservation.update)
 router.delete('/', reservation.delete)
 

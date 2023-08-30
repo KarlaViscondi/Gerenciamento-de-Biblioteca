@@ -11,12 +11,14 @@ datasource db {
 }
 
 model Book {
-  code       String     @id @default(uuid())
+  code       String      @id @default(uuid())
   title      String
   author     String
   year       DateTime
   belongs_to String
   status     BookStatus
+  Operations  Operation[]
+
   @@map("books")
 }
 
@@ -27,11 +29,17 @@ enum BookStatus {
 }
 
 model Operation {
-  id           String        @id @default(uuid())
-  createdAt    DateTime      @default(now())
-  expectedDate DateTime      
-  finalDate    DateTime?     
+  // id           String        @default(uuid())
+  createdAt    DateTime       @default(now())
+  expectedDate DateTime
+  finalDate    DateTime?
   type         OperationType
+  book         Book           @relation(fields: [bookCode], references: [code])
+  bookCode     String
+  student      User           @relation(fields: [studentCPF], references: [cpf])
+  studentCPF   String
+
+  @@id([bookCode, studentCPF])
 }
 
 enum OperationType {
@@ -40,23 +48,25 @@ enum OperationType {
 }
 
 model User {
-  cpf            String     @id @default(uuid())
-  email          String     @unique
-  password       String
-  name           String
-  code           String
-  phone          String
-  birth_date     DateTime
-  street_name    String
-  street_type    StreetType
-  house_number   String
-  complements    String?
-  neighborhood   String
-  city           String
-  state          String
-  cep            Int
-  institution    String
-  role           Role       @default(STUDENT)
+  cpf          String      @id @default(uuid())
+  email        String      @unique
+  password     String
+  name         String
+  code         String
+  phone        String
+  birth_date   DateTime
+  street_name  String
+  street_type  StreetType
+  house_number String
+  complements  String?
+  neighborhood String
+  city         String
+  state        String
+  cep          Int
+  institution  String
+  role         Role        @default(STUDENT)
+  Operations      Operation[]
+
   @@map("users")
 }
 

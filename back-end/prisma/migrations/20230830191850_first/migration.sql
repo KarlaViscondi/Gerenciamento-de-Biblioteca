@@ -18,8 +18,6 @@ CREATE TABLE "books" (
     "year" TIMESTAMP(3) NOT NULL,
     "belongs_to" TEXT NOT NULL,
     "status" "BookStatus" NOT NULL,
-    "created_by" TEXT NOT NULL,
-    "operationId" TEXT,
 
     CONSTRAINT "books_pkey" PRIMARY KEY ("code")
 );
@@ -28,9 +26,8 @@ CREATE TABLE "books" (
 CREATE TABLE "Operation" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "expectedDate" TIMESTAMP(3) NOT NULL DEFAULT (now() + (if(type === 'RESERVE') '1 day'::interval else '14 days'::interval)),
+    "expectedDate" TIMESTAMP(3) NOT NULL DEFAULT (now() + '14 days'::interval),
     "finalDate" TIMESTAMP(3),
-    "createdBy" TEXT,
     "type" "OperationType" NOT NULL,
 
     CONSTRAINT "Operation_pkey" PRIMARY KEY ("id")
@@ -54,32 +51,10 @@ CREATE TABLE "users" (
     "state" TEXT NOT NULL,
     "cep" INTEGER NOT NULL,
     "institution" TEXT NOT NULL,
-    "cpf_created_by" TEXT,
     "role" "Role" NOT NULL DEFAULT 'STUDENT',
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("cpf")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "books_created_by_key" ON "books"("created_by");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Operation_createdBy_key" ON "Operation"("createdBy");
-
--- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
-
--- CreateIndex
-CREATE UNIQUE INDEX "users_cpf_created_by_key" ON "users"("cpf_created_by");
-
--- AddForeignKey
-ALTER TABLE "books" ADD CONSTRAINT "books_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "users"("cpf") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "books" ADD CONSTRAINT "books_operationId_fkey" FOREIGN KEY ("operationId") REFERENCES "Operation"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Operation" ADD CONSTRAINT "Operation_createdBy_fkey" FOREIGN KEY ("createdBy") REFERENCES "users"("cpf") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "users" ADD CONSTRAINT "users_cpf_created_by_fkey" FOREIGN KEY ("cpf_created_by") REFERENCES "users"("cpf") ON DELETE SET NULL ON UPDATE CASCADE;

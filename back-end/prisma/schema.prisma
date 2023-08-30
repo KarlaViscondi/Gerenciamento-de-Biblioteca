@@ -17,12 +17,6 @@ model Book {
   year       DateTime
   belongs_to String
   status     BookStatus
-  user       User       @relation("created_by", fields: [created_by], references: [cpf])
-  created_by String     @unique
-
-  Operation   Operation? @relation(fields: [operationId], references: [id])
-  operationId String?
-
   @@map("books")
 }
 
@@ -35,17 +29,14 @@ enum BookStatus {
 model Operation {
   id           String        @id @default(uuid())
   createdAt    DateTime      @default(now())
-  expectedDate DateTime      @default(dbgenerated("(now() + (if(type === 'RESERVE') '1 day'::interval '14 days'::interval))"))
-  finalDate    DateTime?     @updatedAt
-  books        Book[]
-  user         User?         @relation("created_by", fields: [createdBy], references: [cpf])
-  createdBy    String?       @unique
+  expectedDate DateTime      
+  finalDate    DateTime?     
   type         OperationType
 }
 
 enum OperationType {
   RESERVE
-  LOAN
+  BORROW
 }
 
 model User {
@@ -65,13 +56,7 @@ model User {
   state          String
   cep            Int
   institution    String
-  created_by     User?      @relation("created_by", fields: [cpf_created_by], references: [cpf])
-  cpf_created_by String?    @unique
-  teste2         User?      @relation("created_by")
-  teste          Book?      @relation("created_by")
-  teste3         Operation? @relation("created_by")
   role           Role       @default(STUDENT)
-
   @@map("users")
 }
 

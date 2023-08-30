@@ -76,11 +76,41 @@ book.retrieveOneCode = async function(req, res){
     }
 }
 
-book.update = async function(code_book) {
+book.updateReserved = async function(code_book) {
     try {
         const result = await prisma.book.update({
             where: { code_book: code_book },
             data: { status: 'reserved' }
+        })
+        if(result) res.status(204).end()
+        else res.status(404).end()
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(500).send(error);
+    }
+}
+
+book.updateBorrowed = async function(code_book) {
+    try {
+        const result = await prisma.book.update({
+            where: { code_book: code_book },
+            data: { status: 'borrowed' }
+        })
+        if(result) res.status(204).end()
+        else res.status(404).end()
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(500).send(error);
+    }
+}
+
+book.updateAvailable = async function(code_book) {
+    try {
+        const result = await prisma.book.update({
+            where: { code_book: code_book },
+            data: { status: 'available' }
         })
         if(result) res.status(204).end()
         else res.status(404).end()

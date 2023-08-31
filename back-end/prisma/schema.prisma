@@ -35,7 +35,7 @@ model Operation {
   finalDate    DateTime?
   type         OperationType
   book         Book           @relation(fields: [bookCode], references: [code])
-  bookCode     String
+  bookCode     String         
   student      User           @relation(fields: [studentCPF], references: [cpf])
   studentCPF   String
 
@@ -48,11 +48,11 @@ enum OperationType {
 }
 
 model User {
-  cpf          String      @id @default(uuid())
+  cpf          String      @id
   email        String      @unique
   password     String
   name         String
-  code         String
+  code         String      @unique
   phone        String
   birth_date   DateTime
   street_name  String
@@ -60,7 +60,7 @@ model User {
   house_number String
   complements  String?
   neighborhood String
-  city         String
+  city         String 
   state        String
   cep          Int
   institution  String

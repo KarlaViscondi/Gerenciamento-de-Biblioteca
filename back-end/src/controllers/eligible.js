@@ -6,18 +6,18 @@ export async function Eligible(cpf) {
     const activeReservations = await prisma.reservation.findMany({
         where: {
             cpf,
-            reservation_status: 'reserved'
+            type: "RESERVE" //?
         }
     });
 
-    const activeLoans = await prisma.loan.findMany({ //trocar loan por borrow
+    const activeBorrows = await prisma.borrow.findMany({ 
         where: {
             cpf,
-            loan_status: 'loaned'
+            borrow_status: 'borrow'
         }
     });
 
-    if (activeReservations.length > 0 || activeLoans.length > 0) {
+    if (activeReservations.length > 0 || activeBorrows.length > 0) {
         return false; // reservas ativas ou empréstimos ativos
     }
     

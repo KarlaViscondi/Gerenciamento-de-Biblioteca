@@ -73,10 +73,10 @@ reserve.retrieveOneCPF = async function(req, res){
     }
 }
 
-reserve.retrieveOneId = async function(req, res){
+reserve.retrieveOneBook = async function(req, res){
     try{
         const result = await prisma.reserve.findUnique({
-            where: {id_reserve: req.params.id_reserve}
+            where: {title: req.params.title}
         })
         if(result) res.send(result)
         else res.status(404).end()
@@ -86,11 +86,11 @@ reserve.retrieveOneId = async function(req, res){
         res.status(500).send(error)
     }
 }
-
-reserve.retrieveOneBook = async function(req, res){
+// ID?
+reserve.retrieveOneId = async function(req, res){
     try{
         const result = await prisma.reserve.findUnique({
-            where: {title: req.params.title}
+            where: {id_reserve: req.params.id_reserve}
         })
         if(result) res.send(result)
         else res.status(404).end()

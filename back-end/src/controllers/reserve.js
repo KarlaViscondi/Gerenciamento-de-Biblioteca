@@ -6,16 +6,21 @@ const reserve = {}
 
 reserve.create = async function(req, res) {
     try {
-        const reserveData = req.body;
         // Verificar se o aluno está apto para reservar
         // if (!(await Eligible(reserveData.cpf))) {
         // }
-        return res.status(400).send("O aluno não está apto para fazer a reserva.");
-        reserveData.status = 'reserve'; // Status 
-        await prisma.reserve.create({ data: reserveData });
+        // return res.status(400).send("O aluno não está apto para fazer a reserva.");
+        
+        await prisma.operation.create({
+            data: {
+                ...req. body,
+                type: "RESERVE"
+            }
+        })
+
         // Atualizar status do livro para reservado
-        await book.update(reserveData.code_book);
-        res.status(201).end();
+        // await book.update(reserveData.code_book);
+        // res.status(201).end();
     } 
     catch (error) {
         console.error(error);
@@ -26,10 +31,11 @@ reserve.create = async function(req, res) {
 reserve.retrieveAll = async function(req, res){
     try{
         const result = await prisma.reserve.findMany({
-            orderBy: [
-                {name_student: 'asc'},
-                {date_reserve: 'asc'} // data sera que tbm é assim?  
-            ]
+            where: {type: "RESERVE"},
+            // orderBy: [
+            //     {name_student: 'asc'},
+            //     {date_reserve: 'asc'} // data sera que tbm é assim?  
+            // ]
         })
         res.send(result)
     }
@@ -56,7 +62,7 @@ reserve.retrieveOneName = async function(req, res){
 reserve.retrieveOneCPF = async function(req, res){
     try{
         const result = await prisma.reserve.findUnique({
-            where: {cpf: req.params.cpf} 
+            where: {student_cpf: req.params.student_cpf} 
         })
         if(result) res.send(result)
         else res.status(404).end()

@@ -19,14 +19,14 @@ app.use("/users", usersRouter);
 
 import usersRouter from "./routes/users.js";
 import bookRouter from "./routes/book.js";
-// import studentsRouter from "./routes/student.js";
+import studentsRouter from "./routes/student.js";
 import reservesRouter from "./routes/reserve.js";
 import borrowRouter from "./routes/borrow.js";
 
-app.use("/book", bookRouter);
-// app.use("/students", studentsRouter);
+app.use("/books", bookRouter);
+app.use("/students", studentsRouter);
 app.use("/reserves", reservesRouter);
-app.use("/borrow", borrowRouter);
+app.use("/borrows", borrowRouter);
 
 
 export default app;

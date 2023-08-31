@@ -1,12 +1,12 @@
 import prisma from '../database/client.js';
 
-const student = {}
+const user = {}
 
-student.retrieveAll = async function(req, res){
+user.retrieveAll = async function(req, res){
     try{
-        const result = await prisma.student.findMany({
+        const result = await prisma.user.findMany({
             orderBy: [
-                {name_student: 'asc'}
+                {name: 'asc'}
             ]
         })
         res.send(result)
@@ -17,10 +17,10 @@ student.retrieveAll = async function(req, res){
     }
 }
 
-student.retrieveOneName = async function(req, res){
+user.retrieveOneName = async function(req, res){
     try{
-        const result = await prisma.student.findUnique({
-            where: {name_student: req.params.name_student} 
+        const result = await prisma.user.findMany({
+            where: {name: req.params.name} 
         })
         if(result) res.send(result)
         else res.status(404).end()
@@ -31,10 +31,10 @@ student.retrieveOneName = async function(req, res){
     }
 }
 
-student.retrieveOneCPF = async function(req, res){
+user.retrieveOneCPF = async function(req, res){
     try{
-        const result = await prisma.student.findUnique({
-            where: {cpf_student: req.params.cpf_student}
+        const result = await prisma.user.findUnique({
+            where: {cpf: req.params.cpf}
         })
         if(result) res.send(result)
         else res.status(404).end()
@@ -45,10 +45,10 @@ student.retrieveOneCPF = async function(req, res){
     }
 }
 
-student.retrieveOneRA = async function(req, res){
+user.retrieveOneCode = async function(req, res){
     try{
-        const result = await prisma.student.findUnique({
-            where: {ra_student: req.params.ra_student}
+        const result = await prisma.user.findUnique({
+            where: {code: req.params.code}
         })
         if(result) res.send(result)
         else res.status(404).end()
@@ -59,4 +59,4 @@ student.retrieveOneRA = async function(req, res){
     }
 }
 
-export default student
+export default user

@@ -39,6 +39,8 @@ borrow.retrieveAll = async function(req, res){
     }
 }
 
+// BUSCAR NOME DO ALUNO ANTES
+
 borrow.retrieveOneName = async function(req, res){
     try{
         const result = await prisma.borrow.findUnique({
@@ -52,6 +54,8 @@ borrow.retrieveOneName = async function(req, res){
         res.status(500).send(error)
     }
 }
+
+//A PARTIR DAQUI REVER - TEREMOS ID??
 
 borrow.retrieveOneId = async function(req, res){
     try{

@@ -1,6 +1,6 @@
-//import prisma from '../database/<nome>.js'
+import prisma from '../database/client.js';
 
-const book = []
+const book = {}
 
 //Mostrar livros disponíveis
 book.getAvailableBooks = async function(req, res){

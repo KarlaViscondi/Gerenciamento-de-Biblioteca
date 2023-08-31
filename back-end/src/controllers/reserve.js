@@ -1,20 +1,20 @@
-import prisma from './prisma';
+import prisma from '../database/client.js';
 import book from './book.js';
-import { Eligible } from './eligible';
+import { Eligible } from './eligible.js';
 
-const reservation = {}
+const reserve = {}
 
-reservation.create = async function(req, res) {
+reserve.create = async function(req, res) {
     try {
-        const reservationData = req.body;
+        const reserveData = req.body;
         // Verificar se o aluno está apto para reservar
-        if (!(await Eligible(reservationData.cpf))) {
-            return res.status(400).send("O aluno não está apto para fazer a reserva.");
-        }
-        reservationData.status = 'reserve'; // Status 
-        await prisma.reservation.create({ data: reservationData });
+        // if (!(await Eligible(reserveData.cpf))) {
+        // }
+        return res.status(400).send("O aluno não está apto para fazer a reserva.");
+        reserveData.status = 'reserve'; // Status 
+        await prisma.reserve.create({ data: reserveData });
         // Atualizar status do livro para reservado
-        await book.update(reservationData.code_book);
+        await book.update(reserveData.code_book);
         res.status(201).end();
     } 
     catch (error) {
@@ -23,12 +23,12 @@ reservation.create = async function(req, res) {
     }
 }
 
-reservation.retrieveAll = async function(req, res){
+reserve.retrieveAll = async function(req, res){
     try{
-        const result = await prisma.reservation.findMany({
+        const result = await prisma.reserve.findMany({
             orderBy: [
                 {name_student: 'asc'},
-                {date_reservation: 'asc'} // data sera que tbm é assim?  
+                {date_reserve: 'asc'} // data sera que tbm é assim?  
             ]
         })
         res.send(result)
@@ -39,9 +39,9 @@ reservation.retrieveAll = async function(req, res){
     }
 }
 
-reservation.retrieveOneName = async function(req, res){
+reserve.retrieveOneName = async function(req, res){
     try{
-        const result = await prisma.reservation.findUnique({
+        const result = await prisma.reserve.findUnique({
             where: {name_student: req.params.name_student} 
         })
         if(result) res.send(result)
@@ -53,9 +53,9 @@ reservation.retrieveOneName = async function(req, res){
     }
 }
 
-reservation.retrieveOneCPF = async function(req, res){
+reserve.retrieveOneCPF = async function(req, res){
     try{
-        const result = await prisma.reservation.findUnique({
+        const result = await prisma.reserve.findUnique({
             where: {cpf: req.params.cpf} 
         })
         if(result) res.send(result)
@@ -67,10 +67,10 @@ reservation.retrieveOneCPF = async function(req, res){
     }
 }
 
-reservation.retrieveOneId = async function(req, res){
+reserve.retrieveOneId = async function(req, res){
     try{
-        const result = await prisma.reservation.findUnique({
-            where: {id_reservation: req.params.id_reservation}
+        const result = await prisma.reserve.findUnique({
+            where: {id_reserve: req.params.id_reserve}
         })
         if(result) res.send(result)
         else res.status(404).end()
@@ -81,9 +81,9 @@ reservation.retrieveOneId = async function(req, res){
     }
 }
 
-reservation.retrieveOneBook = async function(req, res){
+reserve.retrieveOneBook = async function(req, res){
     try{
-        const result = await prisma.reservation.findUnique({
+        const result = await prisma.reserve.findUnique({
             where: {title: req.params.title}
         })
         if(result) res.send(result)
@@ -95,10 +95,10 @@ reservation.retrieveOneBook = async function(req, res){
     }
 }
 
-reservation.update = async function(req, res){
+reserve.update = async function(req, res){
     try{
-        const result = await prisma.reservation.update({
-            where: {id_reservation: Number(req.params.id_reservation)},
+        const result = await prisma.reserve.update({
+            where: {id_reserve: Number(req.params.id_reserve)},
             data: req.body
         })
         if(result) res.status(204).end()
@@ -110,10 +110,10 @@ reservation.update = async function(req, res){
     }
 }
 
-reservation.delete = async function(req, res){
+reserve.delete = async function(req, res){
     try{
-        const result = await prisma.reservation.delete({
-            where: {id_reservation: Number(req.params.id_reservation)}
+        const result = await prisma.reserve.delete({
+            where: {id_reserve: Number(req.params.id_reserve)}
         })
         if(result) res.status(204).end()
         else res.status(500).send(error)
@@ -124,4 +124,4 @@ reservation.delete = async function(req, res){
     }
 }
 
-export default reservation
+export default reserve

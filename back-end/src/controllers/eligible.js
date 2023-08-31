@@ -1,4 +1,4 @@
-import prisma from './prisma';
+import prisma from '../database/client.js';
 
 export async function Eligible(cpf) {
     

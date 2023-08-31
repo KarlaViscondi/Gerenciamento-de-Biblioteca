@@ -1,6 +1,6 @@
-//import prisma from '../database/<nome>.js'
+import prisma from '../database/client.js';
 
-const student = []
+const student = {}
 
 student.retrieveAll = async function(req, res){
     try{

@@ -39,7 +39,7 @@ model Operation {
   student      User           @relation(fields: [studentCPF], references: [cpf])
   studentCPF   String
 
-  @@id([bookCode, studentCPF])
+  @@id([bookCode, studentCPF, createdAt, type])
 }
 
 enum OperationType {

@@ -17,13 +17,11 @@ app.use("/users", usersRouter);
 
 import bookRouter from "./routes/book.js";
 import usersRouter from "./routes/user.js";
-import reservesRouter from "./routes/reserve.js";
-import borrowRouter from "./routes/borrow.js";
+import operationRouter from "./routes/operation.js";
 
 app.use("/books", bookRouter);
-app.use("/students", usersRouter);
-app.use("/reserves", reservesRouter);
-app.use("/borrows", borrowRouter);
+app.use("/users", usersRouter);
+app.use("/operations", operationRouter);
 
 
 export default app;

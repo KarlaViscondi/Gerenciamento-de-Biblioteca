@@ -10,6 +10,7 @@ import BooksList from '../components/common/BooksList'
 import { booklist } from '@/data/booklist'
 import {GiBookmark} from 'react-icons/gi'
 import Pagination from '../components/common/Pagination'
+import BookSearch from './book'
 
 export default function Home() {
   return (
@@ -20,7 +21,8 @@ export default function Home() {
       <main className='bg-[#eae6df] py-10 flex-grow h-full'>
           <div className=' mx-2 border border-gray-300 max-w-2xl p-3 rounded-lg md:mx-auto'>
             <Searchbox placeholder={'Pesquisar'}/>
-            <ul className='border border-gray-300 mt-6 rounded-lg divide-y divide-gray-300 text-black'>
+            <BookSearch></BookSearch>
+            {/* <ul className='border border-gray-300 mt-6 rounded-lg divide-y divide-gray-300 text-black'>
               <li className='flex flex-row gap-6 xm:gap-0 items-center text-black m-3 '>
                 <div className='basis-1/4 xm:basis-1/6'  >
                   <GiBookmark />
@@ -49,7 +51,7 @@ export default function Home() {
                   <Searchbox placeholder={'Pesquisar aluno'}/> 
                 </div>
               </Modal>
-            </div>
+            </div> */}
           </div>
       </main>
       <footer>

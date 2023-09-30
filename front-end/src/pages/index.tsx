@@ -10,26 +10,38 @@ import BooksList from '../components/common/BooksList'
 import { booklist } from '@/data/booklist'
 import {GiBookmark} from 'react-icons/gi'
 import Pagination from '../components/common/Pagination'
+import { AiOutlinePlus } from 'react-icons/ai';
+
 import BookSearch from './book'
 
 export default function Home() {
   return (
-    <div className='w-screen h-screen flex flex-col'>
+    <div className='w-screen bg-white'>
       <header>
         <Navbar />
       </header>
-      <main className='bg-[#eae6df] py-10 flex-grow h-full'>
-          <div className=' mx-2 border border-gray-300 max-w-2xl p-3 rounded-lg md:mx-auto'>
-            <Searchbox placeholder={'Pesquisar'}/>
-            <BookSearch></BookSearch>
-            {/* <ul className='border border-gray-300 mt-6 rounded-lg divide-y divide-gray-300 text-black'>
+      <main className=' pt-24 min-h-screen max-w-2xl mx-auto'>
+          <nav className='flex justify-around font-bold text-black text-xl'>
+            <a href='/' className='hover:text-[#1d0f3b]'>Livros</a>
+            <a href='/' className='hover:text-[#1d0f3b]'>Usuários</a>
+            <a href='/' className='hover:text-[#1d0f3b]'>Operações</a>
+          </nav>
+          <Searchbox placeholder={'Pesquisar'} className='mt-12'/>
+          <div className=' mx-2 border border-gray-300 mt-6 h-auto rounded-lg md:mx-auto'>
+            <div className='flex py-2 justify-end border-b border-gray-300 items-center'>
+              <a href='' className='flex items-center'>
+                Cadastrar Livro   
+                <AiOutlinePlus className='mx-1'/>
+              </a>
+            </div>
+            <ul className='mt-6  text-black'>
               <li className='flex flex-row gap-6 xm:gap-0 items-center text-black m-3 '>
-                <div className='basis-1/4 xm:basis-1/6'  >
+                <div className='basis-1/6'  >
                   <GiBookmark />
                 </div>
-                <p className='basis-1/4 xm:basis-1/4'>Título</p>
-                <p className='basis-1/4 xm:basis-1/4'>Autor</p>
-                <p className='hidden xm:block xm:basis-1/3'>Descrição</p>
+                <p className='basis-2/6 xm:basis-1/4 flex-grow'>Título</p>
+                <p className='basis-2/6 xm:basis-1/4 flex-grow'>Autor</p>
+                <p className='basis-1/6'>Detalhes</p>
               </li>
               {
                 booklist.map((book) => (
@@ -37,7 +49,7 @@ export default function Home() {
                 ))
               }
             </ul>
-            <Pagination/>
+            {/* <Pagination/>
             <div className='flex mt-6 justify-center'>
               <Modal className="modal-button bg-[#ABDEE6]" action={'Reservar'} confirm={'Confirmar reserva'}>
                 <h3>Livro(s) selecionado(s)</h3>

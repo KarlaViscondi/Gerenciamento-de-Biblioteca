@@ -1,10 +1,16 @@
 import Link from 'next/link';
-import React from 'react';
+import { GiWhiteBook } from 'react-icons/gi';
 
-export default function Navbar(){
-    return(
-        <div className="navbar bg-[#1d0f3b] text-white flex justify-end">
-            <div className="flex-none pr-4">
+const NavbarOld = () => {
+    return (
+        <div className="navbar bg-[#ab526b] text-white">
+            <div className="flex-1">
+                <Link className="btn btn-ghost normal-case text-xl" href='/'>Catálogo</Link>
+                <Link className="btn btn-ghost normal-case text-xl" href='/reserva'>Reserva</Link>
+                <Link className="btn btn-ghost normal-case text-xl" href='/emprestimo'>Empréstimo</Link>
+                <Link className="btn btn-ghost normal-case text-xl" href='/devolucao'>Devolução</Link>
+            </div>
+            <div className="flex-none">
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
                         <div className="card-body">
@@ -19,7 +25,7 @@ export default function Navbar(){
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="avatar placeholder">
                             <div className="bg-neutral-focus  rounded-full w-10">
-                                <span className="text-3xl text-white">L</span>
+                                <span className="text-3xl text-white">K</span>
                             </div>
                         </div>
                     </label>
@@ -31,6 +37,7 @@ export default function Navbar(){
                 </div>
             </div>
         </div>  
-    )
-}
+    );
+};
 
+export default NavbarOld;

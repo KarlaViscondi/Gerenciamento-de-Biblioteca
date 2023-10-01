@@ -1,20 +1,21 @@
-import React from 'react'
-import Button from '../components/common/Button'
-import Checkbox from '../components/common/Checkbox'
+import React, { useState } from 'react'
 import 'tailwindcss/tailwind.css'
 import Navbar from '../components/common/Navbar'
 import Footerbar from '../components/common/Footerbar'
-import Searchbox from '../components/common/Searchbox'
-import Modal from '../components/common/Modal'
-import BooksList from '../components/common/BooksList'
-import { booklist } from '@/data/booklist'
-import {GiBookmark} from 'react-icons/gi'
-import Pagination from '../components/common/Pagination'
-import { AiOutlinePlus } from 'react-icons/ai';
-
-import BookSearch from './book'
+import Results from '../components/Results';
+import classNames from 'classnames';
 
 export default function Home() {
+  const [content, setContent] = useState<string>();
+ 
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>  {
+    e.preventDefault();
+    const newContent = e.currentTarget.getAttribute('data-content');
+    if(newContent) {
+      setContent(newContent);
+    }
+  };
+ 
   return (
     <div className='w-screen bg-white'>
       <header>
@@ -22,11 +23,16 @@ export default function Home() {
       </header>
       <main className=' pt-24 min-h-screen max-w-2xl mx-auto'>
           <nav className='flex justify-around font-bold text-black text-xl'>
-            <a href='/' className='hover:text-[#1d0f3b]'>Livros</a>
-            <a href='/' className='hover:text-[#1d0f3b]'>Usuários</a>
-            <a href='/' className='hover:text-[#1d0f3b]'>Operações</a>
+            <button className={classNames('hover:text-[#1d0f3b] relative', content === 'book'? 'after:absolute after:w-full after:h-1 after:bg-black after:bottom-0 after:-translate-x-full' : '')} onClick={handleButtonClick} data-content='book'>Livros</button>
+            <button className={classNames('hover:text-[#1d0f3b] relative', content === 'user'? 'after:absolute after:w-full after:h-1 after:bg-black after:bottom-0 after:-translate-x-full' : '')} onClick={handleButtonClick} data-content='user'>Usuários</button>
+            <button className={classNames('hover:text-[#1d0f3b] relative', content === 'operation'? 'after:absolute after:w-full after:h-1 after:bg-black after:bottom-0 after:-translate-x-full' : '')} onClick={handleButtonClick} data-content='operation'>Operações</button>
           </nav>
-          <Searchbox placeholder={'Pesquisar'} className='mt-12'/>
+          <div>
+            {content? 
+              <Results type={content}/> : ""
+            }
+          </div>
+          {/* <Searchbox placeholder={'Pesquisar'} className='mt-12'/>
           <div className=' mx-2 border border-gray-300 mt-6 h-auto rounded-lg md:mx-auto'>
             <div className='flex py-2 justify-end border-b border-gray-300 items-center'>
               <a href='' className='flex items-center'>
@@ -48,7 +54,7 @@ export default function Home() {
                   <BooksList key={book.id} autor={book.autor} id={book.id} title={book.title} description={book.description}/>
                 ))
               }
-            </ul>
+            </ul> */}
             {/* <Pagination/>
             <div className='flex mt-6 justify-center'>
               <Modal className="modal-button bg-[#ABDEE6]" action={'Reservar'} confirm={'Confirmar reserva'}>
@@ -64,7 +70,7 @@ export default function Home() {
                 </div>
               </Modal>
             </div> */}
-          </div>
+          {/* </div> */}
       </main>
       <footer>
         <Footerbar />

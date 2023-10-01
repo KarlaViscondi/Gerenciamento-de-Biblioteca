@@ -2,13 +2,17 @@ import React from 'react';
 import Button from './Button';
 import { ImSearch } from 'react-icons/im';
 import classNames from 'classnames';
+import { IOptionProps } from '@/data/options';
 
 interface ISearchBoxProps{
-    placeholder?: string,
-    className?: string,
+    placeholder?: string;
+    className?: string;
+    options: IOptionProps[];
+    onChange: (selectedValue: string) => void;
 }
 
-const SearchBox = ({placeholder, className}:ISearchBoxProps) => {
+const SearchBox = ({placeholder, className, options, onChange}:ISearchBoxProps) => {
+       
     return (
         <div className={classNames("flex items-center", className)}
         >
@@ -20,10 +24,11 @@ const SearchBox = ({placeholder, className}:ISearchBoxProps) => {
                 > 
                 </input>
                 <div>
-                    <select id="escolhaOpcao" name="opcao" className='bg-white focus:outline-none focus:ring-2 focus:ring-[#ABDEE6]'>
+                    <select id="escolhaOpcao" name="opcao" className='bg-white focus:outline-none focus:ring-2 focus:ring-[#ABDEE6]'  onChange={(e) => onChange(e.target.value)}>
                         <option value=""></option>
-                        <option value="opcao1">Opção 1</option>
-                        <option value="opcao2">Opção 2</option>
+                        {options.map((option) => (
+                            <option key={option.value} value={option.value}>{option.description}</option>
+                        ))}
                     </select>
                 </div>
                 <Button className="px-3.5 py-1.5 text-center tracking-wider font-extrabold ">

@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 export default function Home() {
   const [content, setContent] = useState<string>();
- 
+
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>  {
     e.preventDefault();
     const newContent = e.currentTarget.getAttribute('data-content');
@@ -15,7 +15,7 @@ export default function Home() {
       setContent(newContent);
     }
   };
- 
+
   return (
     <div className='w-screen bg-white'>
       <header>

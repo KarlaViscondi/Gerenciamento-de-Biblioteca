@@ -3,11 +3,18 @@ import SearchBox from './common/Searchbox';
 import { bookOptions, operationOptions, userOptions } from '@/data/options';
 import ResultsBox from './ResultsBox';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { BookModal, UserModal, OperationModal } from './common/ModalNew';
+
 
 interface IResultProps {
     type: string;
 }
 export default function Results({type}:IResultProps) {
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => {
+        setModalOpen(true);
+    }
+
 const [selectedOption, setSelectedOption] = useState<string>('');
 
 const options = () => {
@@ -38,11 +45,20 @@ const handleSelectChange = (value: string) => {
             <SearchBox options={options()} onChange={handleSelectChange} className='mt-5'/>
             <div className=' mx-2 border border-gray-300 mt-6 h-auto rounded-lg md:mx-auto'>
                 <div className='flex py-2 justify-end border-b border-gray-300 items-center'>
-                    <a href='' className='flex items-center'>
-                        {registerOption()}   
-                        <AiOutlinePlus className='mx-1'/>
-                    </a>
-                </div>
+                    <button onClick={openModal} className="flex items-center">
+                        {registerOption()}
+                        <AiOutlinePlus className="mx-1" />
+                    </button>
+                    {selectedOption === 'Cadastrar novo livro' && (
+                    <BookModal open={modalOpen} close={() => setModalOpen(false)} />
+                    )}
+                    {selectedOption === 'Cadastrar novo usuário' && (
+                    <UserModal open={modalOpen} close={() => setModalOpen(false)} />
+                    )}
+                    {selectedOption === 'Cadastrar nova operação' && (
+                    <OperationModal open={modalOpen} close={() => setModalOpen(false)} />
+                    )}
+                    </div>
                 <ResultsBox/>
             </div>
 

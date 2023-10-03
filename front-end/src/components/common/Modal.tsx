@@ -3,13 +3,15 @@ import { ReactNode } from "react";
 import React from "react";
 
 interface IModal {
-    children: ReactNode;
+    children: React.ReactNode;
     className: string;
     action: string;
     confirm: string;
+    open: boolean;
+    close: () => void;
 }
 
-export default function Modal({children, className, action, confirm }:IModal):JSX.Element{
+export default function Modal({children, className, action, confirm,open, close }:IModal):JSX.Element{
     return (
         <> 
             <label htmlFor={className} className={classNames("cursor-pointer text-black rounded-lg text-center uppercase tracking-wider font-extrabold p-3", className)}>{action}</label>

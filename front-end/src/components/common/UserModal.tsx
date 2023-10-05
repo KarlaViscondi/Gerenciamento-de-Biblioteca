@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 
-function BookModal() {
+function UserModal() {
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => {
         setModalOpen(true);
@@ -26,4 +26,4 @@ function BookModal() {
         </div>
     );
 }
-export default BookModal;
+export default UserModal;

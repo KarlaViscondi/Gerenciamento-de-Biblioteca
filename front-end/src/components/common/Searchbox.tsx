@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import Button from './Button';
 import { ImSearch } from 'react-icons/im';
 import classNames from 'classnames';
@@ -8,10 +8,12 @@ interface ISearchBoxProps{
     placeholder?: string;
     className?: string;
     options: IOptionProps[];
-    onChange: (selectedValue: string) => void;
+    onSelectChange: (selectedValue: string) => void;
+    onSearchChange: (searchValue: string) => void;
+    onSearchClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const SearchBox = ({placeholder, className, options, onChange}:ISearchBoxProps) => {
+const SearchBox = ({placeholder, className, options, onSelectChange, onSearchChange, onSearchClick}:ISearchBoxProps) => {
        
     return (
         <div className={classNames("flex items-center", className)}
@@ -21,19 +23,24 @@ const SearchBox = ({placeholder, className, options, onChange}:ISearchBoxProps) 
                     type="text"
                     placeholder={placeholder}
                     className="flex-grow bg-white focus:outline-none focus:ring-2 focus:ring-[#ABDEE6]"
+                    onChange={(e) => onSearchChange(e.target.value)}
                 > 
                 </input>
                 <div>
-                    <select id="escolhaOpcao" name="opcao" className='bg-white focus:outline-none focus:ring-2 focus:ring-[#ABDEE6]'  onChange={(e) => onChange(e.target.value)}>
+                    <select id="escolhaOpcao" name="opcao" className='bg-white focus:outline-none focus:ring-2 focus:ring-[#ABDEE6]'  onChange={(e) => onSelectChange(e.target.value)}>
                         <option value=""></option>
                         {options.map((option) => (
                             <option key={option.value} value={option.value}>{option.description}</option>
                         ))}
                     </select>
                 </div>
-                <Button className="px-3.5 py-1.5 text-center tracking-wider font-extrabold ">
+                {/* <Button  
+                ={onSearchClick}>
                     <ImSearch className="h-5 w-5"/>
-                </Button>
+                </Button> */}
+                <button className="px-3.5 py-1.5 text-center tracking-wider font-extrabold" onClick={onSearchClick}>
+                    <ImSearch className="h-5 w-5"/>
+                </button>
             </div>
         </div>
     );

@@ -1,6 +1,4 @@
-import { AiOutlinePlus } from "react-icons/ai";
-import { GiBookmark } from "react-icons/gi";
-import BooksList from "./common/BooksList";
+
 import { booklist } from "@/data/booklist";
 
 export default function ResultBookBox(){
@@ -14,9 +12,9 @@ export default function ResultBookBox(){
                         <p className='basis-1/6'>Detalhes</p>
                     </li>
                     {
-                        booklist.map((book) => (
-                        <BooksList key={book.id} autor={book.autor} id={book.id} title={book.title} description={book.description}/>
-                        ))
+                        // booklist.map((book) => (
+                        // <BooksList key={book.id} autor={book.autor} id={book.id} title={book.title} description={book.description}/>
+                        // ))
                     }
                 </ul>
         </>    

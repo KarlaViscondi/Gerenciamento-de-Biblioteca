@@ -1,21 +1,21 @@
 import React from "react";
-import Checkbox from "./Checkbox";
-import { IBook } from "@/data/booklist";
 import Button from "./Button";
 import { AiOutlinePlus } from "react-icons/ai";
 
-interface IBookList extends IBook{
+interface IResultList{
+    id: string
+    column1: string;
+    column2: string;
+    column3: string;
     className?: string;
 }
 
-export default function BooksList ({id, title, autor, description, className}: IBookList):JSX.Element{
+export default function ResultList ({id, column1, column2, column3, className}: IResultList):JSX.Element{
     return (
         <li className='flex flex-row items-center text-black m-3' key={id}>
-            <div className="basis-1/6">
-                <Checkbox className="flex items-center bg-white border border-gray-300"/>
-            </div>
-            <p className="basis-2/6 ">{title}</p>
-            <p className="basis-2/6 ">{autor}</p>
+            <p className="basis-1/6">{column1}</p>
+            <p className="basis-2/6 ">{column2}</p>
+            <p className="basis-2/6 ">{column3}</p>
             <Button className="font-normal text-sm flex items-center basis-1/6">
                 <AiOutlinePlus className='mr-1'/>
                 detalhes

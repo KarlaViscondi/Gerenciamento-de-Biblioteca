@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import SearchBox from './common/Searchbox';
 import { bookOptions, operationOptions, userOptions } from '@/data/options';
-import ResultsBox from './ResultsBox';
+import ResultsBox from './ResultBookBox';
 import { AiOutlinePlus } from 'react-icons/ai';
 import BookModal from './common/BookModal';
 import OperationModal from './common/OperationModal';
 import UserModal from './common/UserModal';
+import ResultBookBox from './ResultBookBox';
+import ResultUserBox from './ResultUserBox';
+import ResultOperationBox from './ResultOperationBox';
 
 
 interface IResultProps {
     type: string;
 }
+
 export default function Results({type}:IResultProps) {
     const [selectedOption, setSelectedOption] = useState<string>('');
 
@@ -57,7 +61,14 @@ export default function Results({type}:IResultProps) {
                 {modalOpen && <UserModal />}
                 {/* PRECISA ARRUMAR PARA FICAR UM BOTAO SÓ E RECONHECER A MODAL PARA AQUELA PAG */}
                 </div>
-                <ResultsBox/>
+
+                {type === 'book'? 
+                    <ResultBookBox/> 
+                :   type === 'user'? 
+                    <ResultUserBox/>
+                :
+                    <ResultOperationBox/>
+                }                
             </div>
 
         </>

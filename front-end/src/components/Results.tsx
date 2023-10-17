@@ -12,8 +12,6 @@ import ResultOperationBox from './ResultOperationBox';
 import search from '../utils/search'
 import myfetch from '../utils/myfetch';
 
-
-
 interface IResultProps {
     type: string;
 }
@@ -37,9 +35,6 @@ export default function Results({type}:IResultProps) {
         if(type === 'operation') return  'Cadastrar nova operação' 
         return ''
     }
-
-
-
 
     const handleSelectChange = (value: string) => {
         setSelectedOption(value);
@@ -73,13 +68,26 @@ export default function Results({type}:IResultProps) {
         console.log(doSearch)
     },[result])
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const openModal = () => {
-        setModalOpen(true);
-    }
-    const closeModal = () => {
-        setModalOpen(false);
-    }
+    // const [modalOpen, setModalOpen] = useState(false);
+    // const openModal = () => {
+    //     setModalOpen(true);
+    // }
+    // const closeModal = () => {
+    //     setModalOpen(false);
+    // }
+
+    const [bookModalOpen, setBookModalOpen] = useState(false);
+    const [userModalOpen, setUserModalOpen] = useState(false);
+    const [operationModalOpen, setOperationModalOpen] = useState(false);
+    const openModal = (entityType: string) => {
+            if (entityType === 'book') {
+            setBookModalOpen(true);
+            } else if (entityType === 'user') {
+            setUserModalOpen(true);
+            } else if (entityType === 'operation') {
+            setOperationModalOpen(true);
+            }
+        }
 
     return (
         <>
@@ -87,11 +95,21 @@ export default function Results({type}:IResultProps) {
             <div className=' mx-2 border border-gray-300 mt-6 h-auto rounded-lg md:mx-auto relative'>
                 <div className='flex py-2 justify-end border-b border-gray-300 items-center'>
                 {/* <button className="btn" onClick={openModal}>teste</button> */}
-                {modalOpen && <BookModal />}
+                {/* {modalOpen && <BookModal />}
                 {modalOpen && <OperationModal />}
-                {modalOpen && <UserModal />}
-                {/* PRECISA ARRUMAR PARA FICAR UM BOTAO SÓ E RECONHECER A MODAL PARA AQUELA PAG */}
+                {modalOpen && <UserModal />} */}
+                {/* PRECISA ARRUMAR PARA FICAR UM BOTAO SÓ E RECONHECER A MODAL PARA AQUELA PAG - OOOOK!!!!! */}
+                {/* Agr o problema é outro, sempre que clica no botao 'teste modal' 
+                aparece outro botao e ai quando clica no botao novo abre 
+                a modal correspondente */}
+                <button className="btn" onClick={() => openModal(type)}>
+                Teste modal
+                </button>
                 </div>
+                {bookModalOpen && <BookModal closeModal={() => setBookModalOpen(false)} />}
+                {userModalOpen && <UserModal closeModal={() => setUserModalOpen(false)} />}
+                {operationModalOpen && <OperationModal closeModal={() => setOperationModalOpen(false)} />}
+
 
                 {type === 'book'? 
                     <ResultBookBox/> 

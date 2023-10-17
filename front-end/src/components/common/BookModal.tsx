@@ -1,29 +1,37 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 
-function BookModal() {
+interface BookModalProps {
+  closeModal: () => void; // Declaração da prop closeModal
+}
+
+function BookModal({ closeModal }: BookModalProps) {
     const [modalOpen, setModalOpen] = useState(false);
+
     const openModal = () => {
         setModalOpen(true);
     }
-    
-    const closeModal = () => {
+
+    // Use a prop closeModal para fechar a modal
+    const handleCloseModal = () => {
         setModalOpen(false);
+        closeModal(); // Chama a função de fechamento passada como prop
     }
-    
+
     return (
         <div>
-            <button className='btn' onClick={openModal}>Abrir Modal</button>
-            <Modal
+        <button className='btn' onClick={openModal}>Abrir Modal</button>
+        <Modal
             isOpen={modalOpen}
-            onRequestClose={closeModal}
+            onRequestClose={handleCloseModal}
             contentLabel="Exemplo de Modal"
-            >
+        >
             <h2>Minha Modal</h2>
             <p>Conteúdo da modal</p>
-            <button onClick={closeModal}>Fechar Modal</button>
-            </Modal>
+            <button onClick={handleCloseModal}>Fechar Modal</button>
+        </Modal>
         </div>
     );
-}
+    }
+
 export default BookModal;

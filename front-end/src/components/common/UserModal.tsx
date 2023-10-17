@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 
-function UserModal() {
+interface UserModalProps {
+    closeModal: () => void;
+}
+
+function UserModal({closeModal}: UserModalProps) {
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => {
         setModalOpen(true);
     }
     
-    const closeModal = () => {
+    const handleCloseModal = () => {
         setModalOpen(false);
+        closeModal();
     }
     
     return (
@@ -16,12 +21,12 @@ function UserModal() {
             <button className='btn' onClick={openModal}>Abrir Modal</button>
             <Modal
             isOpen={modalOpen}
-            onRequestClose={closeModal}
+            onRequestClose={handleCloseModal}
             contentLabel="Exemplo de Modal"
             >
             <h2>Minha Modal</h2>
             <p>Conteúdo da modal</p>
-            <button onClick={closeModal}>Fechar Modal</button>
+            <button onClick={handleCloseModal}>Fechar Modal</button>
             </Modal>
         </div>
     );

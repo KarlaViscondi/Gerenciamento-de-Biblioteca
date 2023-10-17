@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-function OperationModal() {
+interface OperationModalProps {
+    closeModal: () => void;
+}
+
+function OperationModal({closeModal}: OperationModalProps) {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -10,8 +14,9 @@ function OperationModal() {
         setModalOpen(true);
     }
     
-    const closeModal = () => {
+    const handleCloseModal = () => {
         setModalOpen(false);
+        closeModal();
     }
     const handleConfirm = () => {
         //Mostrar uma msg de confirmação??
@@ -22,7 +27,7 @@ function OperationModal() {
             <button className='btn' onClick={openModal}>Nova operação <AiOutlinePlus className="mx-1" /></button>
             <Modal
             isOpen={modalOpen}
-            onRequestClose={closeModal}
+            onRequestClose={handleCloseModal}
             contentLabel="Operation Modal"
             >
             <h2>Nova operação</h2>
@@ -37,7 +42,7 @@ function OperationModal() {
 
                 <div>
                     <button onClick={handleConfirm}>Confirmar</button>
-                    <button onClick={closeModal}>Fechar Modal</button>
+                    <button onClick={handleCloseModal}>Fechar Modal</button>
                 </div>
             </Modal>
         </div>

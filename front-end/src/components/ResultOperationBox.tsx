@@ -11,7 +11,7 @@ export interface IOperationParams {
     studentCPF: string;
     cpf_borrowed_by?: string;
     cpf_returned_by?: string;
-  }
+}
 
 interface ISelectedOption{
     result: IOperationParams[] |  undefined;

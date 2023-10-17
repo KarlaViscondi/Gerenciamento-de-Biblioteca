@@ -22,6 +22,4 @@ function search(type, selectedOption, searchValue){
 
     
 }
-  
-
 export default search

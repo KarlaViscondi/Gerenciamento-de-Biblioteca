@@ -2,49 +2,59 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { AiOutlinePlus } from 'react-icons/ai';
 
+
 interface OperationModalProps {
     closeModal: () => void;
 }
 
-function OperationModal({closeModal}: OperationModalProps) {
-    const [modalOpen, setModalOpen] = useState(false);
+function OperationModal({ closeModal }: OperationModalProps) {
     const [selectedOption, setSelectedOption] = useState('');
 
-    const openModal = () => {
-        setModalOpen(true);
-    }
-    
     const handleCloseModal = () => {
-        setModalOpen(false);
         closeModal();
     }
+
     const handleConfirm = () => {
-        //Mostrar uma msg de confirmação??
-    
+        // Lógica para confirmação aqui
     };
+
+    const modalStyles = {
+        content: {
+            width: '55%', // Largura 
+            height: '55vh', // Altura 
+            margin: 'auto', 
+            padding: '40px', 
+            display: 'flex',
+            flexDirection: 'column',
+            
+        },
+    };
+
     return (
         <div>
-            <button className='btn' onClick={openModal}>Nova operação <AiOutlinePlus className="mx-1" /></button>
-            <Modal
-            isOpen={modalOpen}
-            onRequestClose={handleCloseModal}
-            contentLabel="Operation Modal"
-            >
-            <h2>Nova operação</h2>
-                <select
-                    value={selectedOption}
-                    onChange={(e) => setSelectedOption(e.target.value)}
+            <div>
+                <Modal
+                    isOpen={true} 
+                    onRequestClose={handleCloseModal}
+                    contentLabel="Operation Modal"
+                    style={modalStyles}
                 >
-                    <option value="">Selecione uma operação</option>
-                    <option value="reserve">Reserva</option>
-                    <option value="borrow">Empréstimo</option>
-                </select>
+                    <h2>Nova operação</h2>
+                    <select style={{width:'50%', marginTop:'40px', marginBottom:'80px'}}
+                        value={selectedOption}
+                        onChange={(e) => setSelectedOption(e.target.value)}
+                    >
+                        <option value="">Selecione uma operação</option>
+                        <option value="reserve">Reserva</option>
+                        <option value="borrow">Empréstimo</option>
+                    </select>
 
-                <div>
-                    <button onClick={handleConfirm}>Confirmar</button>
-                    <button onClick={handleCloseModal}>Fechar Modal</button>
-                </div>
-            </Modal>
+                    <div>
+                        <button onClick={handleConfirm} >Confirmar</button>
+                        <button onClick={handleCloseModal} >Fechar</button>
+                    </div>
+                </Modal>
+            </div>
         </div>
     );
 }

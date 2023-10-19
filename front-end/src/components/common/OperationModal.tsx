@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { AiOutlinePlus } from 'react-icons/ai';
-
+import OpModalContent from '../common/OpModalContent'
 
 interface OperationModalProps {
     closeModal: () => void;
@@ -9,6 +9,8 @@ interface OperationModalProps {
 
 function OperationModal({ closeModal }: OperationModalProps) {
     const [selectedOption, setSelectedOption] = useState('');
+    const [searchValue, setSearchValue] = useState('');
+    const [result, setResult] = useState('');
 
     const handleCloseModal = () => {
         closeModal();
@@ -17,6 +19,19 @@ function OperationModal({ closeModal }: OperationModalProps) {
     const handleConfirm = () => {
         // Lógica para confirmação aqui
     };
+
+    const handleSearch = (value: string) => {
+        setSearchValue(value);
+    };
+    // const handleSearch = async (value: string) => {
+    //     setSearchValue(value);
+    //     try {
+    //         const searchResults = await performSearch(selectedOption, value);
+    //         setResult(searchResults);
+    //     } catch (error) {
+    //         console.error('Erro na pesquisa:', error);
+    //     }
+    // };
 
     const modalStyles = {
         content: {
@@ -39,20 +54,16 @@ function OperationModal({ closeModal }: OperationModalProps) {
                     contentLabel="Operation Modal"
                     style={modalStyles}
                 >
-                    <h2>Nova operação</h2>
-                    <select style={{width:'50%', marginTop:'40px', marginBottom:'80px'}}
-                        value={selectedOption}
-                        onChange={(e) => setSelectedOption(e.target.value)}
-                    >
-                        <option value="">Selecione uma operação</option>
-                        <option value="reserve">Reserva</option>
-                        <option value="borrow">Empréstimo</option>
-                    </select>
-
-                    <div>
-                        <button onClick={handleConfirm} >Confirmar</button>
-                        <button onClick={handleCloseModal} >Fechar</button>
-                    </div>
+                    <OpModalContent
+                    selectedOption={selectedOption}
+                    searchValue={searchValue}
+                    result={result}
+                    handleSearch={handleSearch}
+                />
+                <div>
+                    <button onClick={handleConfirm}>Confirmar</button>
+                    <button onClick={handleCloseModal}>Fechar</button>
+                </div>
                 </Modal>
             </div>
         </div>

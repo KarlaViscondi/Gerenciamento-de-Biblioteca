@@ -68,14 +68,6 @@ export default function Results({type}:IResultProps) {
         console.log(doSearch)
     },[result])
 
-    // const [modalOpen, setModalOpen] = useState(false);
-    // const openModal = () => {
-    //     setModalOpen(true);
-    // }
-    // const closeModal = () => {
-    //     setModalOpen(false);
-    // }
-
     const [bookModalOpen, setBookModalOpen] = useState(false);
     const [userModalOpen, setUserModalOpen] = useState(false);
     const [operationModalOpen, setOperationModalOpen] = useState(false);
@@ -94,14 +86,6 @@ export default function Results({type}:IResultProps) {
             <SearchBox options={options()} onSelectChange={handleSelectChange} onSearchChange={handleSearchChange} className='mt-5' onSearchClick={handleSearchClick}/>
             <div className=' mx-2 border border-gray-300 mt-6 h-auto rounded-lg md:mx-auto relative'>
                 <div className='flex py-2 justify-end border-b border-gray-300 items-center'>
-                {/* <button className="btn" onClick={openModal}>teste</button> */}
-                {/* {modalOpen && <BookModal />}
-                {modalOpen && <OperationModal />}
-                {modalOpen && <UserModal />} */}
-                {/* PRECISA ARRUMAR PARA FICAR UM BOTAO SÓ E RECONHECER A MODAL PARA AQUELA PAG - OOOOK!!!!! */}
-                {/* Agr o problema é outro, sempre que clica no botao 'teste modal' 
-                aparece outro botao e ai quando clica no botao novo abre 
-                a modal correspondente */}
                 <button className="btn" onClick={() => openModal(type)}>
                 Teste modal
                 </button>

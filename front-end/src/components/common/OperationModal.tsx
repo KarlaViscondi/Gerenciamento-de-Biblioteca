@@ -8,9 +8,9 @@ interface OperationModalProps {
 }
 
 function OperationModal({ closeModal }: OperationModalProps) {
-    const [selectedOption, setSelectedOption] = useState('');
-    const [searchValue, setSearchValue] = useState('');
-    const [result, setResult] = useState('');
+    const [selectedOption, setSelectedOption] = useState<string>('');
+    const [searchValue, setSearchValue] = useState<string>('');
+    const [result, setResult] = useState<string>('');
 
     const handleCloseModal = () => {
         closeModal();
@@ -23,15 +23,6 @@ function OperationModal({ closeModal }: OperationModalProps) {
     const handleSearch = (value: string) => {
         setSearchValue(value);
     };
-    // const handleSearch = async (value: string) => {
-    //     setSearchValue(value);
-    //     try {
-    //         const searchResults = await performSearch(selectedOption, value);
-    //         setResult(searchResults);
-    //     } catch (error) {
-    //         console.error('Erro na pesquisa:', error);
-    //     }
-    // };
 
     const modalStyles = {
         content: {
@@ -55,11 +46,13 @@ function OperationModal({ closeModal }: OperationModalProps) {
                     style={modalStyles}
                 >
                     <OpModalContent
-                    selectedOption={selectedOption}
-                    searchValue={searchValue}
-                    result={result}
-                    handleSearch={handleSearch}
-                />
+                        selectedOption={selectedOption}
+                        searchValue={searchValue}
+                        result={result}
+                        handleSearch={handleSearch}
+                        handleSelectChange={(value: string) => setSelectedOption(value)}
+                        handleSearchClick={handleConfirm} // Talvez você precise dessa função também
+                    />
                 <div>
                     <button onClick={handleConfirm}>Confirmar</button>
                     <button onClick={handleCloseModal}>Fechar</button>

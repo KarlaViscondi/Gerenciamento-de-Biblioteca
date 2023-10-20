@@ -5,6 +5,8 @@ interface OpModalContentProps {
     searchValue: string;
     result: string; 
     handleSearch: (value: string) => void;
+    handleSelectChange: (value: string) => void;
+    handleSearchClick: () => void; 
 }
 
 const OpModalContent: React.FC<OpModalContentProps> = ({
@@ -12,11 +14,13 @@ const OpModalContent: React.FC<OpModalContentProps> = ({
     searchValue,
     result,
     handleSearch,
+    handleSelectChange,
+    handleSearchClick,
 }) => {
     return (
         <div>
             <h2>Selecione tipo de operação</h2>
-            <select value={selectedOption} onChange={(e) => handleSearch(e.target.value)}>
+            <select value={selectedOption} onChange={(e) => handleSelectChange(e.target.value)}>
                 <option value="">Selecione uma operação</option>
                 <option value="reserve">Reserva</option>
                 <option value="borrow">Empréstimo</option>
@@ -28,7 +32,7 @@ const OpModalContent: React.FC<OpModalContentProps> = ({
                 placeholder="Pesquisar..."
             />
             <div>
-                
+                {/* Renderize os resultados aqui */}
             </div>
         </div>
     );

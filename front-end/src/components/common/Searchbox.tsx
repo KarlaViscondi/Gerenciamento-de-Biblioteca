@@ -14,7 +14,7 @@ interface ISearchBoxProps{
 }
 
 const SearchBox = ({placeholder, className, options, onSelectChange, onSearchChange, onSearchClick}:ISearchBoxProps) => {
-       
+
     return (
         <div className={classNames("flex items-center", className)}
         >

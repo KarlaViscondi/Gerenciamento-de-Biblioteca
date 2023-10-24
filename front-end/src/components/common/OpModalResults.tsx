@@ -46,10 +46,9 @@ function Results({ type }: IResultProps) {
                 selectedOption={selectedOption}
                 searchValue={searchValue}
                 result=''
-                handleSearch={handleSearchChange} 
-                handleSelectChange={handleSelectChange} 
-                handleSearchClick={handleSearchClick} 
-            />
+                handleSearch={handleSearchChange}
+                handleSelectChange={handleSelectChange}
+                handleSearchClick={handleSearchClick} type={''}            />
             <button onClick={handleSearchClick}>Pesquisar</button>
 
             {/* resultados */}

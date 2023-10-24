@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { AiOutlinePlus } from 'react-icons/ai';
 import OpModalContent from '../common/OpModalContent'
+import myfetch from '@/src/utils/myfetch';
 
 interface OperationModalProps {
     closeModal: () => void;
@@ -16,9 +17,26 @@ function OperationModal({ closeModal }: OperationModalProps) {
         closeModal();
     }
 
-    const handleConfirm = () => {
-        // Lógica para confirmação aqui
-    };
+    async function handleConfirm(selectedOption: string, searchValue: string, url:string) {
+        try {
+            const response = await myfetch.post(url, {
+                selectedOption, // Os dados necessários para criar a operação
+                searchValue,
+            });
+    
+            if (response.ok) {
+                // A operação foi criada com sucesso
+                console.log('Operação criada com sucesso!');
+            } else {
+                // Lida com erros na criação da operação (por exemplo, validações no servidor)
+                console.error('Erro ao criar a operação');
+            }
+        } catch (error) {
+            // Lida com erros na requisição (por exemplo, falha na rede)
+            console.error('Erro na requisição:', error);
+        }
+    }
+    
 
     const handleSearch = (value: string) => {
         setSearchValue(value);
@@ -51,8 +69,7 @@ function OperationModal({ closeModal }: OperationModalProps) {
                         result={result}
                         handleSearch={handleSearch}
                         handleSelectChange={(value: string) => setSelectedOption(value)}
-                        handleSearchClick={handleConfirm} // Talvez você precise dessa função também
-                    />
+                        handleSearchClick={handleConfirm}              />
                 <div>
                     <button onClick={handleConfirm}>Confirmar</button>
                     <button onClick={handleCloseModal}>Fechar</button>

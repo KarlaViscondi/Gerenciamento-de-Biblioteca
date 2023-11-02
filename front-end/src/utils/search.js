@@ -20,6 +20,35 @@ function search(type, selectedOption, searchValue){
         return url=`/operation`
     }
 
+    if(type === 'user'){
+        let url 
+        if (selectedOption === 'cpf') {
+            return url = `/user/cpf/${encodeURIComponent(searchValue)}`; // disponíveis
+        } else if (selectedOption === 'name') {
+            return url = `/user/name/${encodeURIComponent(searchValue)}`; // emprestados
+        } else if (selectedOption === 'code') {
+            return url = `/user/code/${encodeURIComponent(searchValue)}`; // reservados
+        }
+        return url=`/user`
+    }
+
+    if(type === 'book'){
+        let url 
+        if (selectedOption === 'title') {
+            return url = `/book/title/${encodeURIComponent(searchValue)}`; // disponíveis
+        } else if (selectedOption === 'author') {
+            return url = `/book/author/${encodeURIComponent(searchValue)}`; // emprestados
+        } else if (selectedOption === 'code') {
+            return url = `/book/code/${encodeURIComponent(searchValue)}`; // reservados
+        } else if (selectedOption === 'available') {
+            return url = `/book/available`; 
+        } else if (selectedOption === 'borrowed') {
+            return url = `/book/borrowed`; 
+        } else if (selectedOption === 'reserved') {
+            return url = `/book/reserved`; 
+        }
+        return url=`/book`
+    }
     
 }
 export default search

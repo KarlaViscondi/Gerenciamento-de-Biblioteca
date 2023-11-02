@@ -4,7 +4,7 @@ import { bookOptions, operationOptions, userOptions } from '@/data/options';
 import ResultsBox from './ResultBookBox';
 import { AiOutlinePlus } from 'react-icons/ai';
 import BookModal from './common/BookModal';
-import OperationModal from './common/OperationModal';
+import OperationModal from './operationModal/OperationModal';
 import UserModal from './common/UserModal';
 import ResultBookBox from './ResultBookBox';
 import ResultUserBox from './ResultUserBox';
@@ -87,7 +87,7 @@ export default function Results({type}:IResultProps) {
             <div className=' mx-2 border border-gray-300 mt-6 h-auto rounded-lg md:mx-auto relative'>
                 <div className='flex py-2 justify-end border-b border-gray-300 items-center'>
                 <button className="btn" onClick={() => openModal(type)}>
-                Teste modal
+                    {registerOption()}
                 </button>
                 </div>
                 {bookModalOpen && <BookModal closeModal={() => setBookModalOpen(false)} />}

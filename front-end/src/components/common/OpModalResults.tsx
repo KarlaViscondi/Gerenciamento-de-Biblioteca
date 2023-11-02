@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import search from '@/src/utils/search';
 import myfetch from '@/src/utils/myfetch';
-import OpModalContent from './OpModalContent';
+import OpModalContent from '../operationModal/OpModalContent';
 
 interface IResultProps {
     type: string;

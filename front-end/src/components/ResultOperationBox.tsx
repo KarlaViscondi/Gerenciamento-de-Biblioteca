@@ -14,10 +14,16 @@ export interface IOperationParams {
 }
 
 interface ISelectedOption{
-    result: IOperationParams[] |  undefined;
+    result?: IOperationParams[] |  undefined;
 }
 
-export default function ResultOperationBox({result}:ISelectedOption){
+export default function ResultOperationBox({}:ISelectedOption){
+    let result = [{
+        id: "123",
+        type: "reserve",
+        bookCode: "123",
+        studentCPF: "12345678955"
+    }]
     return (
         <>
                 <ul className='mt-6  text-black'>
@@ -28,12 +34,12 @@ export default function ResultOperationBox({result}:ISelectedOption){
                         <p className='basis-1/6'>Detalhes</p>
                     </li>
                     {
-                        result != undefined? 
+                        // result != undefined? 
                             result.map((result) => (
                             <ResultList id={result.id} column1={result.type} column2={result.bookCode} column3={result.studentCPF}/>
                             ))
-                        :
-                        <p>Realize uma pesquisa</p>
+                        // :
+                        // <p>Realize uma pesquisa</p>
                     }
                 </ul>
         </>    

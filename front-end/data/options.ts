@@ -68,15 +68,11 @@ export const operationOptions: IOptionProps[] = [
         description: "Por código do livro",
     },
     {
-        value: "codigo",
-        description: "Por código",
-    },
-    {
         value: "id",
         description: "Por código da operação",
     },
     {
-        value: "reseve",
+        value: "reserve",
         description: "Reservas",
     },
     

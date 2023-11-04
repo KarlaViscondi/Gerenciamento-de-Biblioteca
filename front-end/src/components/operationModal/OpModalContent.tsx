@@ -22,10 +22,14 @@ export default function OpModalContent(){
     const [userResult, setUserResult] = useState();
     const [doBookSearch, setDoBookSearch] = useState<boolean>(false);
     const [bookResult, setBookResult] = useState();
+    useEffect(()=>{
+        console.log(userResult)
+    },[userResult])
 
     async function handleSearchClick(type: string) {
         let url 
         if(type === "user"){
+            console.log(selectedUserOption)
             url = search(type, selectedUserOption, searchUserValue)
             console.log(url)
             setDoUserSearch(true)
@@ -82,7 +86,7 @@ export default function OpModalContent(){
             <SearchBox options={options('user')} onSelectChange={(value: string) => setSelectedUserOption(value)} onSearchChange={(value: string) => setSearchUserValue(value)} className='mt-5' onSearchClick={handleSearchUserClick}/>
             {
                 userResult? 
-                    <ResultUserBox/>
+                    <ResultUserBox result={userResult}/>
                 :
                     <></>
             }
@@ -90,7 +94,7 @@ export default function OpModalContent(){
             <SearchBox options={options('book')} onSelectChange={(value: string) => setSelectedBookOption(value)} onSearchChange={(value: string) => setSearchBookValue(value)} className='mt-5' onSearchClick={handleSearchBookClick}/>
             {
                 bookResult? 
-                    <ResultBookBox/>
+                    <ResultBookBox result={bookResult}/>
                 :
                     <></>
             }

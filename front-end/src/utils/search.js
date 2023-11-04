@@ -12,9 +12,9 @@ function search(type, selectedOption, searchValue){
             return url = `/operation/book/${encodeURIComponent(searchValue)}`; // emprestados
         } else if (selectedOption === 'id') {
             return url = `/operation/id/${encodeURIComponent(searchValue)}`; // reservados
-        } else if (selectedOption === 'reserves') {
+        } else if (selectedOption === 'reserve') {
             return url = `/operation/type/RESERVE`; // por título
-        } else if (selectedOption === 'borrows') {
+        } else if (selectedOption === 'borrow') {
             return url = `/operation/type/BORROW`; // por título
         }
         return url=`/operation`

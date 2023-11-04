@@ -1,7 +1,19 @@
+import ResultList from "./common/ResultList";
 
-import { booklist } from "@/data/booklist";
+export interface IBookParams {
+    code: string;
+    title: string;
+    author: string;
+    year: string;
+    belongs_to: string;
+    publisher_id: string;
+    status: string;    
+}
 
-export default function ResultBookBox(){
+interface ISelectedOption{
+    result?: IBookParams[] |  undefined;
+}
+export default function ResultBookBox({result}:ISelectedOption){
     return (
         <>
                 <ul className='mt-6  text-black'>
@@ -12,9 +24,12 @@ export default function ResultBookBox(){
                         <p className='basis-1/6'>Detalhes</p>
                     </li>
                     {
-                        // booklist.map((book) => (
-                        // <BooksList key={book.id} autor={book.autor} id={book.id} title={book.title} description={book.description}/>
-                        // ))
+                        result != undefined? 
+                        result.map((result) => (
+                        <ResultList id={result.code} column1={result.code} column2={result.title} column3={result.author}/>
+                        ))
+                    :
+                        <></>
                     }
                 </ul>
         </>    

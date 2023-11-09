@@ -20,6 +20,7 @@ function OperationModal({ closeModal, id }: OperationModalProps) {
                 <Modal
                     isOpen={true}
                     onRequestClose={handleCloseModal}
+                    ariaHideApp={false}
                     contentLabel="Operation Modal"
                     className="w-3/5 h-3/5 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 overflow-y-scroll p-10 rounded-md border bg-white border-gray-300"
                 >

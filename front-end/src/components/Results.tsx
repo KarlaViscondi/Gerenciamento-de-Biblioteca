@@ -63,11 +63,6 @@ export default function Results({type}:IResultProps) {
             }
     }
 
-    useEffect(()=>{
-        console.log(result)
-        console.log(doSearch)
-    },[result])
-
     const [bookModalOpen, setBookModalOpen] = useState(false);
     const [userModalOpen, setUserModalOpen] = useState(false);
     const [operationModalOpen, setOperationModalOpen] = useState(false);

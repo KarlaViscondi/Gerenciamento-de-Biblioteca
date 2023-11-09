@@ -22,10 +22,7 @@ export default function OpModalContent(){
     const [userResult, setUserResult] = useState();
     const [doBookSearch, setDoBookSearch] = useState<boolean>(false);
     const [bookResult, setBookResult] = useState();
-    useEffect(()=>{
-        console.log(userResult)
-    },[userResult])
-
+  
     async function handleSearchClick(type: string) {
         let url 
         if(type === "user"){

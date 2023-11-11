@@ -83,7 +83,7 @@ export default function OpModalContent(){
             <SearchBox options={options('user')} onSelectChange={(value: string) => setSelectedUserOption(value)} onSearchChange={(value: string) => setSearchUserValue(value)} className='mt-5' onSearchClick={handleSearchUserClick}/>
             {
                 userResult? 
-                    <ResultUserBox result={userResult}/>
+                    <ResultUserBox result={userResult} input={true}/>
                 :
                     <></>
             }
@@ -91,7 +91,7 @@ export default function OpModalContent(){
             <SearchBox options={options('book')} onSelectChange={(value: string) => setSelectedBookOption(value)} onSearchChange={(value: string) => setSearchBookValue(value)} className='mt-5' onSearchClick={handleSearchBookClick}/>
             {
                 bookResult? 
-                    <ResultBookBox result={bookResult}/>
+                    <ResultBookBox result={bookResult} input={true}/>
                 :
                     <></>
             }

@@ -2,29 +2,58 @@ import myfetch from "@/src/utils/myfetch";
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
 
-interface updateModalProps{
+interface IUpdateModalProps{
     id: string;
 }
 
-// FALTA TIPAR E AJEITAR VISUAL E QUAIS CAMPOS VAO MOSTRAR DE FATO 
+interface IBookProps{
+    code: string;
+    title: string;
+    author: string;
+    year: string;
+    belongs_to: string;
+    publisher_id: string;
+    status: string;
+}
 
-export default function OperationUpdateModal({id}:updateModalProps){
-    const [result, setResult] = useState();
-    const [student, setStudent] = useState();
-    const [book, setBook] = useState();
+interface IUserProps{
+    cpf: string;
+    email: string;
+    password: string;
+    name: string;
+    code: string;
+    phone: string;
+    birth_date: Date;
+    house_number: string;
+    complements: string;
+    neighborhood: string;
+    city: string;
+    state: string;
+    cep: string;
+    institution: string;
+    role: string;
+}
+
+interface IOperationProps{
+    id: string;
+    createdAt: string;
+    expectedDate: string;
+    finalDate?: string;
+    type: string;
+    bookCode: string;
+    studentCPF: string;
+    cpf_borrowed_by?: string;
+    cpf_returned_by?: string;
+}
+
+export default function OperationUpdateModal({id}:IUpdateModalProps){
+    const [result, setResult] = useState<IOperationProps>();
+    const [student, setStudent] = useState<IUserProps>();
+    const [book, setBook] = useState<IBookProps>();
 
     useEffect(()=>{
         getOperationResult() 
     },[])
-    useEffect(()=>{
-        console.log(result)
-    },[result])
-    useEffect(()=>{
-        console.log(student)
-    },[student])
-    useEffect(()=>{
-        console.log(book)
-    },[book])
 
     async function getOperationResult(){
         try {
@@ -73,16 +102,27 @@ export default function OperationUpdateModal({id}:updateModalProps){
                 <div className="text-black flex flex-col space-y-2">
                     <p>Nome do aluno: {student.name}</p>
                     <p>CPF: {student.cpf}</p>
-                    <p>Tipo de operação: {result.type}</p>
+                    <p>Intituição: {student.institution}</p>
+                    <p>Título do Livro: {book.title}</p>
+                    <p>Autor(a) do livro: {book.author}</p>
+                    <p>Tipo de operação: {result.type === "RESERVE"? "Reserva" : 'empréstimo'}</p>
                     <p>Data da operação: {result.createdAt}</p>
                     <p>Data limite: {result.expectedDate}</p>
+                    {
+                        result.finalDate? 
+                            result.type === "RESERVE"? 
+                                <p>Reserva confirmada em: {result.finalDate}</p>
+                            :
+                                <p>Devolvido em: {result.finalDate}</p>
+                        :
+                            result.type === "RESERVE"? 
+                                <p>Reserva não efetuada</p>
+                            :
+                                <p>Devolução em aberto</p>
+                    }
                 </div>
-
                 :
-
                 <Loading/> 
-
-            
             }
         </>
     )

@@ -20,9 +20,10 @@ export interface IUserParams {
 
 interface ISelectedOption{
     result?: IUserParams[] |  undefined;
+    input?: boolean;
 }
 
-export default function ResultUserBox({result}:ISelectedOption){
+export default function ResultUserBox({result, input}:ISelectedOption){
     return (
         <>
                 <ul className='mt-6  text-black'>
@@ -35,7 +36,7 @@ export default function ResultUserBox({result}:ISelectedOption){
                     {
                         result != undefined? 
                         result.map((result) => (
-                        <ResultList id={result.cpf} column1={result.code} column2={result.name} column3={result.cpf}/>
+                        <ResultList id={result.cpf} column1={result.code} column2={result.name} column3={result.cpf} input={input}/>
                         ))
                     :
                         <></>

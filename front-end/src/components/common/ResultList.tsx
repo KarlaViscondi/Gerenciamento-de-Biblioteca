@@ -9,13 +9,21 @@ interface IResultList{
     column2: string;
     column3: string;
     className?: string;
+    input?: boolean; 
 }
 
-export default function ResultList ({id, column1, column2, column3, className}: IResultList):JSX.Element{
+export default function ResultList ({id, column1, column2, column3, className, input}: IResultList):JSX.Element{
     const [operationModalOpen, setOperationModalOpen] = useState(false);
 
     return (
         <li className='flex flex-row items-center text-black m-3' key={id}>
+            {
+                input?
+                    <input type='checkbox' className='bg-white'></input>
+                :
+                <></>
+
+            }
             <p className="basis-1/6">{column1}</p>
             <p className="basis-2/6 ">{column2}</p>
             <p className="basis-2/6 ">{column3}</p>

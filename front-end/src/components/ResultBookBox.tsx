@@ -12,8 +12,9 @@ export interface IBookParams {
 
 interface ISelectedOption{
     result?: IBookParams[] |  undefined;
+    input?: boolean;
 }
-export default function ResultBookBox({result}:ISelectedOption){
+export default function ResultBookBox({result, input}:ISelectedOption){
     return (
         <>
                 <ul className='mt-6  text-black'>
@@ -26,7 +27,7 @@ export default function ResultBookBox({result}:ISelectedOption){
                     {
                         result != undefined? 
                         result.map((result) => (
-                        <ResultList id={result.code} column1={result.code} column2={result.title} column3={result.author}/>
+                        <ResultList id={result.code} column1={result.code} column2={result.title} column3={result.author} input={input}/>
                         ))
                     :
                         <></>

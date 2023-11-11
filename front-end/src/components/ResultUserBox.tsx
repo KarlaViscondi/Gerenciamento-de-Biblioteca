@@ -21,9 +21,11 @@ export interface IUserParams {
 interface ISelectedOption{
     result?: IUserParams[] |  undefined;
     input?: boolean;
+    handleUserChange?: (cpf:string) => void;
+    checkedUser?: string | undefined;
 }
 
-export default function ResultUserBox({result, input}:ISelectedOption){
+export default function ResultUserBox({result, input, handleUserChange, checkedUser}:ISelectedOption){
     return (
         <>
                 <ul className='mt-6  text-black'>
@@ -36,7 +38,7 @@ export default function ResultUserBox({result, input}:ISelectedOption){
                     {
                         result != undefined? 
                         result.map((result) => (
-                        <ResultList id={result.cpf} column1={result.code} column2={result.name} column3={result.cpf} input={input}/>
+                        <ResultList key={result.code} id={result.cpf} column1={result.code} column2={result.name} column3={result.cpf} input={input} handleChange={handleUserChange} checkedInput={checkedUser} type="user"/>
                         ))
                     :
                         <></>

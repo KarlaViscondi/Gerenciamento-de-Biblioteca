@@ -30,7 +30,7 @@ export default function ResultOperationBox({result}:ISelectedOption){
                     {
                         result != undefined? 
                             result.map((result) => (
-                            <ResultList id={result.id} column1={result.type} column2={result.bookCode} column3={result.studentCPF}/>
+                            <ResultList key={result.id} id={result.id} column1={result.type} column2={result.bookCode} column3={result.studentCPF} type="operation"/>
                             ))
                         :
                         <p>Realize uma pesquisa</p>

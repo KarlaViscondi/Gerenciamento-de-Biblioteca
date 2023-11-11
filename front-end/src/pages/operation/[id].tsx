@@ -31,7 +31,7 @@ export default function UpdateOperations(){
           setOperation(result)
         } 
         catch(error) {
-            console.log(error)
+            console.error(error)
         }
       }
 

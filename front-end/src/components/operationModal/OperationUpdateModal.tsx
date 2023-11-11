@@ -1,12 +1,13 @@
 import myfetch from "@/src/utils/myfetch";
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
+import { format } from 'date-fns';
 
 interface IUpdateModalProps{
     id: string;
 }
 
-interface IBookProps{
+export interface IBookProps{
     code: string;
     title: string;
     author: string;
@@ -16,7 +17,7 @@ interface IBookProps{
     status: string;
 }
 
-interface IUserProps{
+export interface IUserProps{
     cpf: string;
     email: string;
     password: string;
@@ -59,8 +60,19 @@ export default function OperationUpdateModal({id}:IUpdateModalProps){
         try {
             var response = await myfetch.get(`/operation/id/${id}`)
             response = response.shift()
-            console.log(response)
-            setResult(response)
+            const createDate =  new Date(response.createdAt)
+            const expectedDate = new Date(response.expectedDate)
+            const today = new Date()
+            const todayNewFormat = format(today, 'dd/MM/yyyy')
+            const createdAtNewFormat = format(createDate, 'dd/MM/yyyy')
+            const expectedDateNewFormat = format(expectedDate, 'dd/MM/yyyy')
+            const isBlocked = todayNewFormat > expectedDateNewFormat
+            console.log(isBlocked)
+            //AJEITAR AQUI
+            setResult({...response,
+            createdAt: createdAtNewFormat,
+            expectedDate: expectedDateNewFormat,
+            })
             getUserResult(response.studentCPF)
             getBookResult(response.bookCode)
             return response

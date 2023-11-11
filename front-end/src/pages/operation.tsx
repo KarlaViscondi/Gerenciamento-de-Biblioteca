@@ -28,7 +28,6 @@ function OperationSearch() {
         if (response.ok) {
             const data = await response.json();
             // atualiza a lista de livros com os dados retornados
-            console.log(`'Resultado da pesquisa:'`, data);
         } else {
             console.error('Erro na solicitação:', response.statusText);
         }

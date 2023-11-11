@@ -30,10 +30,9 @@ function OperationModal({ closeModal, id }: OperationModalProps) {
                         :
                             <OpModalContent/>
                     }
-                <div className='flex flex-row space-x-8 justify-end mt-4'>
+                {/* <div className='flex flex-row space-x-8 justify-end mt-4'>
                     <button onClick={handleCloseModal}>Fechar</button>
-                    {/* <button onClick={handleConfirm}>Confirmar</button> */}
-                </div>
+                </div> */}
                 </Modal>
             </div>
     );

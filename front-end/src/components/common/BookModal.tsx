@@ -6,25 +6,17 @@ interface BookModalProps {
 }
 
 function BookModal({ closeModal }: BookModalProps) {
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const openModal = () => {
-        setModalOpen(true);
-    }
-
-    // Use a prop closeModal para fechar a modal
     const handleCloseModal = () => {
-        setModalOpen(false);
-        closeModal(); // Chama a função de fechamento passada como prop
+        closeModal(); 
     }
 
     return (
         <div>
-        <button className='btn' onClick={openModal}>Abrir Modal</button>
         <Modal
-            isOpen={modalOpen}
+            isOpen={true}
             onRequestClose={handleCloseModal}
-            contentLabel="Exemplo de Modal"
+            ariaHideApp={false}
+            contentLabel="Book Modal"
         >
             <h2>Minha Modal</h2>
             <p>Conteúdo da modal</p>

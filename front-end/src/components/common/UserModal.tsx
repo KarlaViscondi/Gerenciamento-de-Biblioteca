@@ -18,11 +18,11 @@ function UserModal({closeModal}: UserModalProps) {
     
     return (
         <div>
-            <button className='btn' onClick={openModal}>Abrir Modal</button>
             <Modal
-            isOpen={modalOpen}
+            isOpen={true}
             onRequestClose={handleCloseModal}
-            contentLabel="Exemplo de Modal"
+            ariaHideApp={false}
+            contentLabel="User Modal"
             >
             <h2>Minha Modal</h2>
             <p>Conteúdo da modal</p>

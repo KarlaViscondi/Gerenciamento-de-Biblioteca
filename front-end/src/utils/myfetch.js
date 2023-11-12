@@ -36,7 +36,7 @@ function getErrorDescription(response) {
 
 myfetch.post = async function(path, body) {
   const response = await fetch(baseUrl + path, defaultOptions(body, 'POST'))
-  if(response.ok) return true
+  if(response.ok) return response.json()
   else throw new Error(getErrorDescription(response))
 }
 

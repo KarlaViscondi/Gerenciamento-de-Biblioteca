@@ -57,10 +57,10 @@ export default function Results({type}:IResultProps) {
             var response = await myfetch.get(url)
             setResult(response)
             return response
-            } catch (error) {
+        } catch (error) {
             console.error('Erro na pesquisa:', error);
             return 'Erro na Pesquisa'
-            }
+        }
     }
 
     const [bookModalOpen, setBookModalOpen] = useState(false);
@@ -91,9 +91,9 @@ export default function Results({type}:IResultProps) {
 
 
                 {type === 'book'? 
-                    <ResultBookBox/> 
+                    <ResultBookBox result={result}/> 
                 :   type === 'user'? 
-                    <ResultUserBox/>
+                    <ResultUserBox result={result}/>
                 :
                     <ResultOperationBox result={result}/>
                 }                

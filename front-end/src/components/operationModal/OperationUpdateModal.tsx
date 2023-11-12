@@ -51,10 +51,11 @@ export default function OperationUpdateModal({id}:IUpdateModalProps){
     const [result, setResult] = useState<IOperationProps>();
     const [student, setStudent] = useState<IUserProps>();
     const [book, setBook] = useState<IBookProps>();
+    const [blocked, setBlocked] = useState<boolean>()
 
     useEffect(()=>{
         getOperationResult() 
-    },[])
+    },[result])
 
     async function getOperationResult(){
         try {
@@ -63,16 +64,24 @@ export default function OperationUpdateModal({id}:IUpdateModalProps){
             const createDate =  new Date(response.createdAt)
             const expectedDate = new Date(response.expectedDate)
             const today = new Date()
-            const todayNewFormat = format(today, 'dd/MM/yyyy')
             const createdAtNewFormat = format(createDate, 'dd/MM/yyyy')
             const expectedDateNewFormat = format(expectedDate, 'dd/MM/yyyy')
-            const isBlocked = todayNewFormat > expectedDateNewFormat
-            console.log(isBlocked)
-            //AJEITAR AQUI
-            setResult({...response,
-            createdAt: createdAtNewFormat,
-            expectedDate: expectedDateNewFormat,
-            })
+            const isBlocked = expectedDate < today
+            setBlocked(isBlocked)
+            if(response?.finalDate){
+                const finalDate = new Date(response.finalDate)
+                const finalDateNewFormat = format(finalDate, 'dd/MM/yyyy')
+                setResult({...response,
+                    createdAt: createdAtNewFormat,
+                    expectedDate: expectedDateNewFormat,
+                    finalDate: finalDateNewFormat,
+                })
+            } else {
+                setResult({...response,
+                    createdAt: createdAtNewFormat,
+                    expectedDate: expectedDateNewFormat,
+                })
+            }
             getUserResult(response.studentCPF)
             getBookResult(response.bookCode)
             return response
@@ -106,7 +115,43 @@ export default function OperationUpdateModal({id}:IUpdateModalProps){
         }
     }
 
+    async function handleCreateOperation() {
+        try {
+            var body = {
+                type: "BORROW",
+                bookCode: result?.bookCode,
+                studentCPF: result?.studentCPF
+            }
+            const operation = await myfetch.post('/operation', body)
+            console.log(operation);
+            
+            alert(`Empréstimo realizado com sucesso! Número da requisição: ${operation.id}`)
+            return 
+            } catch (error) {
+            console.error('Erro na criação:', error);
+            return 'Erro na criação'
+        }
+    }
 
+    async function handleUpdateOperation() {
+            try {
+                const date = new Date()
+                const dateIsoFormat = date.toISOString()
+                const body = {
+                    finalDate: dateIsoFormat
+                }
+                await myfetch.put(`/operation/update/${id}`, body)
+                if(result?.type==="RESERVE"){
+                    handleCreateOperation()
+                } else if(result?.type==="BORROW"){
+                    alert("Devolução realizada com sucesso!")
+                }
+                return 
+                } catch (error) {
+                console.error('Erro na criação:', error);
+                return 'Erro na criação'
+            }        
+    }
 
     return(
         <>
@@ -117,7 +162,7 @@ export default function OperationUpdateModal({id}:IUpdateModalProps){
                     <p>Intituição: {student.institution}</p>
                     <p>Título do Livro: {book.title}</p>
                     <p>Autor(a) do livro: {book.author}</p>
-                    <p>Tipo de operação: {result.type === "RESERVE"? "Reserva" : 'empréstimo'}</p>
+                    <p>Tipo de operação: {result.type === "RESERVE"? "Reserva" : 'Empréstimo'}</p>
                     <p>Data da operação: {result.createdAt}</p>
                     <p>Data limite: {result.expectedDate}</p>
                     {
@@ -128,10 +173,37 @@ export default function OperationUpdateModal({id}:IUpdateModalProps){
                                 <p>Devolvido em: {result.finalDate}</p>
                         :
                             result.type === "RESERVE"? 
-                                <p>Reserva não efetuada</p>
+                                blocked? 
+                                    <p className="text-red-500">Essa reserva já venceu, não pode ser retirada</p>
+                                :
+                                    <p>Reserva não retirada</p>
                             :
-                                <p>Devolução em aberto</p>
+                                blocked?
+                                    <p className="text-red-500">A devolução está atrasada</p>
+                                :
+                                    <p>Devolução em aberto</p>
                     }
+                    <div className='flex flex-row space-x-8 justify-end mt-4'>
+                        {
+                            result.type === "RESERVE"?
+                                result.finalDate?
+                                    <button className='btn' onClick={handleUpdateOperation} disabled>Confirmar empréstimo</button>
+                                :
+                                    blocked?
+                                        <button className='btn' onClick={handleUpdateOperation} disabled>Confirmar empréstimo</button>
+                                    :
+                                        <button className='btn' onClick={handleUpdateOperation} >Confirmar empréstimo</button>
+                            :
+                                result.finalDate?
+                                    <button className='btn' onClick={handleUpdateOperation} disabled>Confirmar devolução</button>
+                                :
+                                    blocked?
+                                        <button className='btn text-red-500' onClick={handleUpdateOperation} >Confirmar devolução</button>
+                                    :
+                                        <button className='btn' onClick={handleUpdateOperation} >Confirmar devolução</button>
+
+                        }
+                    </div>
                 </div>
                 :
                 <Loading/> 

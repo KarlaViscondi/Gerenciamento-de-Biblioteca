@@ -137,10 +137,6 @@ export default function OpModalContent(){
             }
     }
 
-    useEffect(()=>{
-        console.log(selectedTypeOption)
-    },[selectedTypeOption])
-
     async function handleCreateOperation() {
         if(selectedBook.bookCode != undefined && selectedUser.cpf != undefined && selectedTypeOption){
             try {

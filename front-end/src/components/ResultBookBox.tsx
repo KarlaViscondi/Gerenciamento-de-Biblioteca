@@ -20,7 +20,7 @@ export default function ResultBookBox({result, input, handleBookChange, checkedB
     return (
         <>
                 <ul className='mt-6  text-black'>
-                    <li className='flex flex-row gap-6 xm:gap-0 items-center text-black m-3 '>
+                    <li className='flex flex-row gap-6 xm:gap-0 items-start text-black m-3 '>
                         <p className='basis-1/6'>Código</p>
                         <p className='basis-2/6 xm:basis-1/4 flex-grow'>Título</p>
                         <p className='basis-2/6 xm:basis-1/4 flex-grow'>Autor</p>

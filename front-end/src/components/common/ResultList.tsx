@@ -42,7 +42,7 @@ export default function ResultList ({id, column1, column2, column3, className, i
     }
 
     return (
-        <li className='flex flex-row items-center text-black m-3'>
+        <li className='flex flex-row items-start text-black m-3'>
             {
                 input?
                     <input type='checkbox' className={`${

@@ -76,6 +76,10 @@ export default function Results({type}:IResultProps) {
             }
         }
 
+    useEffect(()=>{
+        setResult(undefined) 
+    }, [type])
+
     return (
         <>
             <SearchBox options={options()} onSelectChange={handleSelectChange} onSearchChange={handleSearchChange} className='mt-5' onSearchClick={handleSearchClick}/>
